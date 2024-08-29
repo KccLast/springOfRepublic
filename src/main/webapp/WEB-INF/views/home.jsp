@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="/resources/css/header.css">
 </head>
 <body>
-<%@ include file="common/header.jsp" %>
+<%@ include file="/resources/common/header.jsp" %>
 <div id="c-container">
     <div id="c-contentBox">
-        
+
 
     </div>
 
