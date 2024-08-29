@@ -16,10 +16,10 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js"
 	integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 	crossorigin="anonymous"></script>
-<link rel="stylesheet" href="/WEB-INF/views/common/header.css">
+
 </head>
-<body>
-	<div class="text-center shadow-sm p-2 mb-5 bg-body-tertiary">
+<header>
+	<div class="text-center shadow-sm p-2 bg-body-tertiary">
 		<div class="row">
 			<div class="row col-auto">
 				<img class="mt-1 ms-3" src="/resources/img/logo.png" style="width: 225px; height: 45px">
@@ -32,5 +32,5 @@
 		</div>
 
 	</div>
-</body>
+</header>
 </html>
