@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Home Page</title>
+    <%@ include file="common/header.jsp" %>
 </head>
 <body>
     <h1>Welcome to the Home Page!</h1>
