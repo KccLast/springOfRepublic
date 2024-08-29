@@ -1,9 +1,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <%@ include file="common/header.jsp" %>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/resources/css/header.css">
 </head>
 <body>
-    <h1>Welcome to the Home Page!</h1>
+<%@ include file="common/header.jsp" %>
+<div id="c-container">
+    <div id="c-contentBox">
+        
+
+    </div>
+
+</div>
 </body>
 </html>
