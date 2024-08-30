@@ -8,6 +8,6 @@ public class JspTestController {
 
     @GetMapping("/")
     public String home() {
-        return "home";  // home.jsp를 가리킴
+        return "mypage/reservation";  // home.jsp를 가리킴
     }
 }

@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="/resources/css/header.css">
+
 </head>
 <body>
 <%@ include file="/resources/common/header.jsp" %>
