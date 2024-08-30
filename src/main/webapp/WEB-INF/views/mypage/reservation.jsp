@@ -11,17 +11,19 @@
 </head>
 <body>
 <%@ include file="/resources/common/header.jsp" %>
-<div id="c-container">
-    <div id="c-contentBox">
-        <nav>
-            <ul>
-                <li><a href="#">예약</a></li>
-                <li><a href="#">방문 완료</a></li>
-                <li><a href="#">예약 취소</a></li>
-            </ul>
-        </nav>
+<div id="c-container" class="c-flex-col">
+    <div id="c-contentBox" >
+
 
         <div class="content">
+            <nav>
+                <ul>
+                    <li><a href="#">예약</a></li>
+                    <li><a href="#">방문 완료</a></li>
+                    <li><a href="#">예약 취소</a></li>
+                </ul>
+            </nav>
+
             <div class="tab-menu">
                 <button class="tab-button" onclick="openTab('정보')">내 정보</button>
                 <button class="tab-button active" onclick="openTab('예약')">내 예약</button>
