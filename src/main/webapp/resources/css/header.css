@@ -36,6 +36,7 @@ footer{
 	box-sizing: border-box;
 	overflow: auto;
 
+
 }
 
 .c-flex-col{
@@ -47,6 +48,5 @@ footer{
 
 
 #c-contentBox{
-	background-color: bisque;
+	/*background-color: bisque;*/
 }
-
