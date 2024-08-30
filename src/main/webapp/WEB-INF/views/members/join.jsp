@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="/resources/css/header.css">
-    <link rel="stylesheet" href="/resources/join/join.css">
+    <link rel="stylesheet" href="/resources/css/members/join.css">
 </head>
 <body>
 <%@ include file="/resources/common/header.jsp" %>
@@ -15,8 +15,8 @@
         <h2>회원가입</h2>
         <div class="join-container">
             <div class="profile-container">
-                <img class="profile-image" src="/resources/img/join/profile.png" alt="프로필">
-                <img class="camera-icon" src="/resources/img/join/camera.png" alt="카메라">
+                <img class="profile-image" src="/resources/img/members/profile.png" alt="프로필">
+                <img class="camera-icon" src="/resources/img/members/camera.png" alt="카메라">
             </div>
 
             <form id="join-form" action="" method="post">
