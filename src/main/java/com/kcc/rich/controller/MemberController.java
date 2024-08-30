@@ -11,7 +11,8 @@ public class MemberController {
     }
 
     @GetMapping("/members/login")
-    public void login() {}
+    public void login() {
+    }
 
     @GetMapping("/members/find-pwd")
     public String findPwd() {
@@ -23,4 +24,13 @@ public class MemberController {
         return "members/changePwd";
     }
 
+    @GetMapping("/members/confirm-myInfo")
+    public String confirmMyInfo() {
+        return "members/confirmMyInfo";
+    }
+
+    @GetMapping("/members/update-info")
+    public String updateMyInfo() {
+        return "members/updateMyInfo";
+    }
 }
