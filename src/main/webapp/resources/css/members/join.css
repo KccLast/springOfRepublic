@@ -1,3 +1,7 @@
+#c-contentBox {
+  background-color: white;
+}
+
 #c-contentBox h2 {
   text-align: center;
   color: #333;
@@ -9,9 +13,11 @@
 .join-container {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   gap: 50px;
-  margin-top: 50px;
+  box-shadow: 5px 5px 5px 5px #b0acac;
+  width: 70%;
+  margin: 50px auto 0 auto;
 }
 
 .profile-container {
@@ -56,9 +62,21 @@ input.form-control {
   border-radius: 5px;
 }
 
-.btn-info, input[type="submit"] {
+input[type="submit"] {
   width: 100%;
   padding: 10px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 20px;
+  background-color: #00712D;
+  color: white;
+}
+
+.btn-info {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
   font-size: 16px;
   border: none;
   border-radius: 20px;

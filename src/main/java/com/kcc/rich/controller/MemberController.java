@@ -7,6 +7,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MemberController {
     @GetMapping("/members/join")
     public String join() {
-        return "members/join";  // home.jsp를 가리킴
+        return "members/join";
     }
+
+    @GetMapping("/members/login")
+    public void login() {}
+
+    @GetMapping("/members/find-pwd")
+    public String findPwd() {
+        return "members/findPwd";
+    }
+
+    @GetMapping("/members/change-pwd")
+    public String changePwd() {
+        return "members/changePwd";
+    }
+
 }
