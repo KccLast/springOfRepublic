@@ -5,11 +5,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="/resources/css/header.css">
+    <link rel="stylesheet" href="/resources/css/main.css">
 </head>
 <body>
 <%@ include file="/resources/common/header.jsp" %>
-<div id="c-container">
+<!-- class c-flex-center 추가 8.30 3:01-->
+<div id="c-container" class="c-flex-center">
     <div id="c-contentBox">
 
 
