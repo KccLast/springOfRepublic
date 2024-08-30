@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: rich
+  mvc:
+    view:
+      prefix: "/WEB-INF/views/"
+      suffix: ".jsp"

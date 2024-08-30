@@ -31,22 +31,17 @@ footer{
 }
 #c-contentBox{
 	width: 85%;
-	height: 800px;
+	height: 700px;
 	border-radius: 10px;
 	box-sizing: border-box;
 	overflow: auto;
-
-
 }
-
 .c-flex-col{
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
-
-
 #c-contentBox{
 	/*background-color: bisque;*/
 }
