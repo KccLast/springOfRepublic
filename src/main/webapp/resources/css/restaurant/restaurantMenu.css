@@ -1,0 +1,36 @@
+.wrap-vertical{
+    width: 80%;
+    overflow: scroll;
+    overflow: auto;
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+}
+
+.menu-list-wrap{
+    width: 100%;
+}
+
+#menu-list{
+    width: 80%;
+    /* text-align: center; */
+    margin: auto;
+}
+
+.text-orange{
+    color: #FF9100;
+    font-weight: bold;
+}
+
+.reservation-btn{
+    display: flex;
+    justify-content: center;
+}
+
+.btn{
+    width: 62%;
+    height: 10%;
+    margin: auto;
+    font-size: xx-large !important;
+    font-weight: bold !important;
+}

@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class RestaurantsController {
 
-
-
-    @GetMapping({"/","/{page}"})
-    public String showMainPage(@PathVariable(required = false) Integer page, Model model ) {
-        if(page == null) {page=1;}
+    @GetMapping({ "/", "/{page}" })
+    public String showMainPage(@PathVariable(required = false) Integer page, Model model) {
+        if (page == null) {
+            page = 1;
+        }
 
         return "main";
     }

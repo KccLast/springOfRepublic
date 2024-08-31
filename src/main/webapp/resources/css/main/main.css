@@ -31,7 +31,7 @@ footer{
 }
 #c-contentBox{
     width: 85%;
-    height: 800px;
+    height: 730px;
     border-radius: 10px;
     box-sizing: border-box;
     overflow: auto;
@@ -47,7 +47,7 @@ footer{
 
 
 #c-contentBox{
-    background-color: bisque;
+    background-color: rgb(255, 255, 255);
 }
 
 

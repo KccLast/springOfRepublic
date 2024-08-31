@@ -1,0 +1,13 @@
+
+.reservation-btn{
+    display: flex;
+    justify-content: center;
+}
+
+.res-btn{
+    width: 62%;
+    height: 10%;
+    margin: auto;
+    font-size: xx-large !important;
+    font-weight: bold !important;
+}
