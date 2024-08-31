@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kcc.rich.mapper.RestaurantsMapper">
+
+    <select id="selectRestaurantsWithPage" resultType="RestaurantVO" parameterType="com.kcc.rich.util.Criteria">
+        SELECT trr.*
+        FROM (
+        SELECT rownum RNO, t.*
+        FROM (
+        SELECT *
+        FROM restaurants
+        <where>
+            <if test="searchKeyword != null">
+                <if test="searchKeyword.restaurant_district != null and searchKeyword.restaurant_district != ''">
+                    AND restaurant_district=#{searchKeyword.restaurant_district}
+                </if>
+                <if test="searchKeyword.restaurant_type != null and searchKeyword.restaurant_type != ''">
+                    AND restaurant_type=#{searchKeyword.restaurant_type}
+                </if>
+                <if test="searchKeyword.restaurant_name != null and searchKeyword.restaurant_name != ''">
+                    AND restaurant_name LIKE '%'||#{searchKeyword.restaurant_name}||'%'
+                </if>
+            </if>
+        </where>
+        ORDER BY restaurant_id
+        ) t
+        WHERE rownum <![CDATA[<=]]> #{page} * #{contentPerPage}
+        ) trr
+        WHERE rno <![CDATA[>]]> (#{page} - 1) * #{contentPerPage}
+    </select>
+
+    <select id="selectRestaurantAll" resultType="int" parameterType="com.kcc.rich.util.Criteria">
+        SELECT count(*)
+        FROM restaurants
+        <where>
+            <if test="searchKeyword != null">
+                <if test="searchKeyword.restaurant_district != null and !searchKeyword.restaurant_district.equals('')">
+                    AND restaurant_district = #{searchKeyword.restaurant_district}</if>
+                <if test="searchKeyword.restaurant_type != null and !searchKeyword.restaurant_type.equals('')">
+                    AND restaurant_type = #{searchKeyword.restaurant_type}</if>
+                <if test="searchKeyword.restaurant_name != null and !searchKeyword.restaurant_name.equals('')">
+                    AND restaurant_name LIKE '%'||#{searchKeyword.restaurant_name}||'%'
+                </if>
+            </if>
+        </where>
+    </select>
+
+</mapper>
