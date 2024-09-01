@@ -47,4 +47,71 @@
         </where>
     </select>
 
+    <insert id="insertRestaurants" parameterType="com.kcc.rich.util.won.RestaurantJsonDTO$ResInfo">
+
+        <selectKey resultType="long" keyProperty="restaurant_id" order="BEFORE">
+            select RESTAURANT_SEQ.nextval from dual
+        </selectKey>
+        INSERT INTO restaurants (
+        RESTAURANT_ID,
+        RESTAURANT_NAME,
+        RESTAURANT_DISTRICT,
+        RESTAURANT_TYPE,
+        RESTAURANT_IMG,
+        RESTAURANT_ADDRESS,
+        RESTMENU_BOARD,
+        RESTAURANT_PHONE,
+        REST_RESERVPRICE
+        ) VALUES (
+        #{restaurant_id},
+        #{resName},
+        #{resDistrict},
+        #{resType},
+        '/resources/img/main/image85.png',
+        #{resAddress},
+        'example_menu.jpg',
+        #{resPhone},
+        10000
+        )
+    </insert>
+
+    <insert id="insertResDetail" parameterType="com.kcc.rich.util.won.RestaurantJsonDTO$ResInfo">
+
+        INSERT INTO res_details (
+        RESTAURANT_ID,
+        RESTAURANT_Y,
+        RESTAURANT_X,
+        WEEK_START,
+        WEEK_END,
+        WEEKEND_START,
+        WEEKEND_END,
+        DAYOFF
+        ) VALUES (
+        #{restaurant_id},
+        #{restaurant_y},
+        #{restaurant_x},
+        '09:00',
+        '18:00',
+        '10:00',
+        '17:00',
+        'Sunday'
+        )
+
+    </insert>
+
+    <insert id="insertMenus" parameterType="long">
+        INSERT INTO menus (
+         RESTAURANT_ID,
+          MENU_NAME,
+           MENU_IMG,
+          MENU_PRICE,
+          MENU_DETAIL
+        ) VALUES (
+         #{restaurant_id},
+          'Kimchi Stew',
+          'kimchi_stew.jpg',
+           8500,
+          'Spicy stew with kimchi and pork'
+        )
+    </insert>
 </mapper>
