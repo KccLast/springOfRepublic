@@ -4,32 +4,100 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kcc.rich.mapper.RestaurantsMapper">
 
-    <select id="selectRestaurantsWithPage" resultType="RestaurantVO" parameterType="com.kcc.rich.util.Criteria">
-        SELECT trr.*
-        FROM (
-        SELECT rownum RNO, t.*
-        FROM (
+
+    <select id="selectRestaurantsWithPage" resultType="com.kcc.rich.util.won.RestaurantRankDTO" parameterType="com.kcc.rich.util.Criteria">
         SELECT *
-        FROM restaurants
+        FROM (
+        SELECT t.*,
+        NVL((
+        SELECT TRUNC(AVG(rev.review_score), 1)
+        FROM reservations r
+        LEFT JOIN reviews rev ON r.reservation_id = rev.reservation_id
+        WHERE r.restaurant_id = t.restaurant_id
+        ), 0.0) AS res_avg,
+        ROW_NUMBER() OVER (ORDER BY restaurant_id) AS row_num
+        FROM restaurants t
         <where>
+            1 = 1
             <if test="searchKeyword != null">
                 <if test="searchKeyword.restaurant_district != null and searchKeyword.restaurant_district != ''">
-                    AND restaurant_district=#{searchKeyword.restaurant_district}
+                    AND restaurant_district = #{searchKeyword.restaurant_district}
                 </if>
                 <if test="searchKeyword.restaurant_type != null and searchKeyword.restaurant_type != ''">
-                    AND restaurant_type=#{searchKeyword.restaurant_type}
+                    AND restaurant_type = #{searchKeyword.restaurant_type}
                 </if>
                 <if test="searchKeyword.restaurant_name != null and searchKeyword.restaurant_name != ''">
-                    AND restaurant_name LIKE '%'||#{searchKeyword.restaurant_name}||'%'
+                    AND restaurant_name LIKE '%' || #{searchKeyword.restaurant_name} || '%'
                 </if>
             </if>
         </where>
+        )
+        WHERE row_num BETWEEN ((#{page} - 1) * #{contentPerPage} + 1) AND (#{page} * #{contentPerPage})
         ORDER BY restaurant_id
-        ) t
-        WHERE rownum <![CDATA[<=]]> #{page} * #{contentPerPage}
-        ) trr
-        WHERE rno <![CDATA[>]]> (#{page} - 1) * #{contentPerPage}
     </select>
+
+<!--    <select id="selectRestaurantsWithPage" resultType="com.kcc.rich.util.won.RestaurantRankDTO" parameterType="com.kcc.rich.util.Criteria">-->
+<!--        SELECT ttr.*-->
+<!--        FROM(-->
+<!--        SELECT rownum,t.*-->
+<!--        FROM(-->
+<!--        SELECT t.*,NVL((-->
+<!--        SELECT TRUNC(AVG(rev.review_score), 1)-->
+<!--        FROM reservations r-->
+<!--        LEFT JOIN reviews rev ON r.reservation_id = rev.reservation_id-->
+<!--        WHERE r.restaurant_id = t.restaurant_id-->
+<!--        ),0.0) res_avg-->
+<!--        FROM  restaurants t-->
+<!--        <where>-->
+<!--            rownum <![CDATA[<=]]> #{page} * #{contentPerPage}-->
+<!--                        <if test="searchKeyword != null">-->
+<!--                            <if test="searchKeyword.restaurant_district != null and searchKeyword.restaurant_district != ''">-->
+<!--                                AND restaurant_district=#{searchKeyword.restaurant_district}-->
+<!--                            </if>-->
+<!--                            <if test="searchKeyword.restaurant_type != null and searchKeyword.restaurant_type != ''">-->
+<!--                                AND restaurant_type=#{searchKeyword.restaurant_type}-->
+<!--                            </if>-->
+<!--                            <if test="searchKeyword.restaurant_name != null and searchKeyword.restaurant_name != ''">-->
+<!--                                AND restaurant_name LIKE '%'||#{searchKeyword.restaurant_name}||'%'-->
+<!--                            </if>-->
+<!--                        </if>-->
+<!--        </where>-->
+
+<!--        ORDER BY restaurant_id-->
+<!--        )t-->
+<!--        )ttr-->
+<!--        where rownum  <![CDATA[>]]> (#{page} - 1) * #{contentPerPage}-->
+<!--    </select>-->
+
+
+
+
+<!--    <select id="selectRestaurantsWithPage" resultType="RestaurantVO" parameterType="com.kcc.rich.util.Criteria">-->
+<!--        SELECT trr.*-->
+<!--        FROM (-->
+<!--        SELECT rownum RNO, t.*-->
+<!--        FROM (-->
+<!--        SELECT *-->
+<!--        FROM restaurants-->
+<!--        <where>-->
+<!--            <if test="searchKeyword != null">-->
+<!--                <if test="searchKeyword.restaurant_district != null and searchKeyword.restaurant_district != ''">-->
+<!--                    AND restaurant_district=#{searchKeyword.restaurant_district}-->
+<!--                </if>-->
+<!--                <if test="searchKeyword.restaurant_type != null and searchKeyword.restaurant_type != ''">-->
+<!--                    AND restaurant_type=#{searchKeyword.restaurant_type}-->
+<!--                </if>-->
+<!--                <if test="searchKeyword.restaurant_name != null and searchKeyword.restaurant_name != ''">-->
+<!--                    AND restaurant_name LIKE '%'||#{searchKeyword.restaurant_name}||'%'-->
+<!--                </if>-->
+<!--            </if>-->
+<!--        </where>-->
+<!--        ORDER BY restaurant_id-->
+<!--        ) t-->
+<!--        WHERE rownum <![CDATA[<=]]> #{page} * #{contentPerPage}-->
+<!--        ) trr-->
+<!--        WHERE rno <![CDATA[>]]> (#{page} - 1) * #{contentPerPage}-->
+<!--    </select>-->
 
     <select id="selectRestaurantAll" resultType="int" parameterType="com.kcc.rich.util.Criteria">
         SELECT count(*)

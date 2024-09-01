@@ -4,6 +4,7 @@ import com.kcc.rich.domain.RestaurantVO;
 import com.kcc.rich.mapper.RestaurantsMapper;
 import com.kcc.rich.util.Criteria;
 import com.kcc.rich.util.won.RestaurantJsonDTO;
+import com.kcc.rich.util.won.RestaurantRankDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +17,7 @@ public class RestaurantServiceImpl implements RestaurantService{
     private final RestaurantsMapper restaurantsMapper;
 
     @Override
-    public List<RestaurantVO> getRestaurantList(Criteria criteria){
+    public List<RestaurantRankDTO> getRestaurantList(Criteria criteria){
         return restaurantsMapper.selectRestaurantsWithPage(criteria);
     }
 

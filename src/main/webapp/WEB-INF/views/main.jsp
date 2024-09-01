@@ -132,7 +132,7 @@
                                 <img src="/resources/img/main/star-fill.png" />
                             </div>
                             <div class="j-card-rank">
-                                <span>4.0</span>
+                                <span>${res.res_avg}</span>
                                 <span>/5.0</span>
                             </div>
                         </div>

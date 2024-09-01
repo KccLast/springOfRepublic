@@ -5,6 +5,7 @@ import com.kcc.rich.service.RestaurantService;
 import com.kcc.rich.util.Criteria;
 import com.kcc.rich.util.PageDTO;
 import com.kcc.rich.util.SearchKeyword;
+import com.kcc.rich.util.won.RestaurantRankDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -31,9 +32,12 @@ private final RestaurantService restaurantService;
             }
             cri.setSearchKeyword(searchKeyword);
         }
-        List<RestaurantVO> restaurantList = restaurantService.getRestaurantList(cri);
+        List<RestaurantRankDTO> restaurantList = restaurantService.getRestaurantList(cri);
+
         int total = restaurantService.getRestaurantCount(cri);
         PageDTO pageDTO  = new PageDTO(cri,total);
+        System.out.println(restaurantList);
+        System.out.println(pageDTO);
         model.addAttribute("pageDTO",pageDTO);
         model.addAttribute("resList",restaurantList);
         return "main";
