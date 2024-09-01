@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kcc.rich.mapper.RestaurantMapper">
+
+    <select id="selectRestaurant" resultType="RestaurantHomeResponse">
+        SELECT res.restaurant_id, res.restaurant_name, res.restaurant_type, res.restaurant_phone, res.restaurant_address, res.rest_oneline,
+               rev.review_avg, rev.review_total,
+               (SELECT TO_CHAR(SYSDATE, 'DY') FROM DUAL) AS cur_day,
+               (SELECT CASE WHEN TO_CHAR(SYSDATE, 'D') IN ('1', '7')
+                                THEN (SELECT weekend_start FROM res_details WHERE restaurant_id = #{restaurant_id})
+                            ELSE (SELECT week_start FROM res_details WHERE restaurant_id = #{restaurant_id})
+                           END
+                FROM DUAL) AS start_time,
+               (SELECT CASE WHEN TO_CHAR(SYSDATE, 'D') IN ('1', '7')
+                                THEN (SELECT weekend_end FROM res_details WHERE restaurant_id = #{restaurant_id})
+                            ELSE (SELECT week_end FROM res_details WHERE restaurant_id = #{restaurnt_id})
+                           END
+                FROM DUAL) AS end_time
+        FROM restaurants res,
+             (SELECT rsv.restaurant_id AS restaurant_id, AVG(rvw.review_score) AS review_avg, COUNT(rvw.review_score) AS review_total
+              FROM reviews rvw, reservations rsv
+              WHERE rvw.reservation_id = rsv.reservation_id
+                AND rsv.restaurant_id = #{restaurant_id}
+              GROUP BY rsv.restaurant_id) rev
+        WHERE res.restaurant_id = rev.restaurant_id
+    </select>
+
+</mapper>

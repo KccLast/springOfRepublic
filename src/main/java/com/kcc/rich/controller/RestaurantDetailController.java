@@ -2,23 +2,33 @@ package com.kcc.rich.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kcc.rich.service.RestaurantService;
+
+import lombok.RequiredArgsConstructor;
+
 @RestController
+@RequestMapping("/restaurant")
+@RequiredArgsConstructor
 public class RestaurantDetailController {
 
-    @GetMapping("/restaurant/home")
-    public ModelAndView getHome() {
+    private final RestaurantService restaurantService;
+
+    @GetMapping("/home/{restaurant_id}")
+    public ModelAndView getHome(@PathVariable Long restaurant_id) {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("restaurantId", 1);
+        mav.addObject("restaurantHomeResponse", restaurantService.getRestaurantHome(restaurant_id));
         mav.setViewName("restaurantDetail/restaurantHome");
 
         return mav;
     }
 
-    @GetMapping("/restaurant/menu")
+    @GetMapping("/menu")
     public ModelAndView getMenu() {
         ModelAndView mav = new ModelAndView();
         mav.addObject("test", "test");
@@ -27,7 +37,7 @@ public class RestaurantDetailController {
         return mav;
     }
 
-    @GetMapping("/restaurant/review")
+    @GetMapping("/review")
     public ModelAndView getReview() {
         ModelAndView mav = new ModelAndView();
         mav.addObject("test", "test");
@@ -36,7 +46,7 @@ public class RestaurantDetailController {
         return mav;
     }
 
-    @GetMapping("/restaurant/info")
+    @GetMapping("/info")
     public ModelAndView getInfo() {
         ModelAndView mav = new ModelAndView();
         mav.addObject("test", "test");
