@@ -28,4 +28,15 @@
         WHERE res.restaurant_id = rev.restaurant_id
     </select>
 
+    <select id="selectMenuList" resultType="MenuVO">
+        SELECT menu_id, menu_name, menu_img, menu_price, menu_detail
+        FROM menus
+        WHERE restaurant_id =#{restaurant_id}
+    </select>
+
+    <select id="selectRestaurantMenuBoard" resultType="string">
+        SELECT restmenu_board
+        FROM restaurants
+        WHERE restaurant_id =#{restaurant_id}
+    </select>
 </mapper>

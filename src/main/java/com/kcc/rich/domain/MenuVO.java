@@ -8,7 +8,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class MenuVO {
-	private Long restaurant_id;
+	private Long menu_id;
 	private String menu_name;
 	private String menu_img;
 	private Integer menu_price;

@@ -28,10 +28,10 @@ public class RestaurantDetailController {
         return mav;
     }
 
-    @GetMapping("/menu")
-    public ModelAndView getMenu() {
+    @GetMapping("/menu/{restaurant_id}")
+    public ModelAndView getMenu(@PathVariable Long restaurant_id) {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("test", "test");
+        mav.addObject("RestaurantMenuResponse", restaurantService.getRestaurantMenu(restaurant_id));
         mav.setViewName("restaurantDetail/restaurantMenu");
 
         return mav;
