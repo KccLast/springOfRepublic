@@ -61,7 +61,7 @@ input.form-control {
   border-radius: 5px;
 }
 
-input[type="submit"] {
+input[type="buton"] {
   width: 100%;
   padding: 10px;
   margin-bottom: 20px;
@@ -72,7 +72,7 @@ input[type="submit"] {
   color: white;
 }
 
-.btn-info {
+.btn-info, #submit-btn {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
@@ -82,7 +82,9 @@ input[type="submit"] {
   background-color: #00712D;
   color: white;
 }
-.email-container {
+
+.email-container, .password-container, .password-confirm-container,
+.name-container, .nickname-container, .address-container, .phone-container{
   position: relative;
   display: flex;
   align-items: center;
@@ -102,4 +104,9 @@ input[type="submit"] {
 .email-container .btn-info {
   width: auto;
   flex-shrink: 0;
+}
+
+.error-message {
+  color: #ff9100;
+  font-size: 12px;
 }

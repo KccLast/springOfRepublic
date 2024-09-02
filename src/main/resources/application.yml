@@ -1,3 +1,22 @@
+#server:
+#  port: 8085
+#
+#spring:
+#  application:
+#    name: rich
+#  mvc:
+#    view:
+#      prefix: "/WEB-INF/views/"
+#      suffix: ".jsp"
+#  datasource:
+#    driverClassName: oracle.jdbc.OracleDriver
+#    url: jdbc:oracle:thin:@localhost:1521/XE
+#    username: kcc
+#    password: 123454554
+#
+#mybatis:
+#  mapper-locations: classpath:com/kcc/rich/mapper/*.xml # 매퍼 파일 경로
+#  type-aliases-package: com.kcc.rich.domain # 타입 별칭 패키지 (필요 시)
 server:
   port: 8085
 
@@ -8,3 +27,18 @@ spring:
     view:
       prefix: "/WEB-INF/views/"
       suffix: ".jsp"
+  datasource:
+    driverClassName: oracle.jdbc.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:XE  # XE 버전의 URL. 버전에 맞게 수정
+    username: kcc                            # DB 사용자명
+    password: 1234                      # DB 비밀번호
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml # 매퍼 파일 경로
+  type-aliases-package: com.kcc.rich.domain.member # 타입 별칭 패키지 (필요 시)
+  configuration:
+    map-underscore-to-camel-case: true # 언더스코어를 카멜케이스로 자동 변환
+
+logging:
+  level:
+    com.kcc.rich: debug # MyBatis 쿼리 로깅 활성화

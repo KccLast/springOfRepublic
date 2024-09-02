@@ -17,10 +17,10 @@
         <div class="login-content">
             <img src="/resources/img/logo.png" alt="로고">
             <h2>로그인</h2>
-            <form class="login-form" action="" method="post">
-                <input type="text" id="member_email" name="member_email" placeholder="이메일을 입력하세요">
-                <input type="text" id="member_password" name="member_password" placeholder="비밀번호를 입력하세요">
-                <input type="submit" value="이메일로 로그인">
+            <form class="login-form" action="/login" method="post">
+                <input type="text" id="username" name="username" placeholder="이메일을 입력하세요">
+                <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요">
+                <input type="submit" id="btn-login"  value="이메일로 로그인">
             </form>
             <button class="btn-join">회원가입</button>
 
@@ -28,5 +28,7 @@
         </div>
     </div>
 </div>
+
+<%--<script src="/resources/js/members/login.js"></script>--%>
 </body>
 </html>
