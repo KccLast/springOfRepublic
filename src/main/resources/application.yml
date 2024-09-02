@@ -4,6 +4,9 @@ server:
 spring:
   application:
     name: rich
+  config:
+    import:
+      - classpath:application-db.yml
   mvc:
     view:
       prefix: "/WEB-INF/views/"
