@@ -1,5 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page import="com.kcc.rich.dto.RestaurantHomeResponse"%>
+<%
+  request.setCharacterEncoding("UTF-8");
 
+  RestaurantHomeResponse res = (RestaurantHomeResponse)request.getAttribute("restaurantHomeResponse");
+%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -123,20 +128,20 @@
         <hr />
         <!-- 식당 정보 텍스트 -->
         <div class="hi">
-          <h4 class="text-secondary mb-3">양식</h4>
-          <h2 class="mb-2">식당 이름</h2>
+          <h4 class="text-secondary mb-3"><%=res.getRestaurant_type()%></h4>
+          <h2 class="mb-2"><%=res.getRestaurant_name()%></h2>
           <i class="bi bi-star-fill d-inline text-warning"></i>
-          <h3 class="ms-3 d-inline">5.0</h3>
+          <h3 class="ms-3 d-inline"><%=res.getReview_avg()%></h3>
           <h4 class="ms-5 d-inline">
-            리뷰 265개 <i class="bi bi-chevron-right m-2"></i>
+            리뷰 <%=res.getReview_total()%>개 <i class="bi bi-chevron-right m-2"></i>
           </h4>
           <h4 class="text-secondary mt-3">
-            계절 별 스페니쉬 코스요리와 와인을 즐기는 레스토랑
+            <%=res.getRest_oneline()%>
           </h4>
           <hr />
           <div class="m-2">
             <i class="bi bi-geo-alt d-inline"></i>
-            <h4 class="ms-2 d-inline">서울특별시 서대문구 연희동</h4>
+            <h4 class="ms-2 d-inline"><%=res.getRestaurant_address()%></h4>
           </div>
           <div class="m-2">
             <i class="bi bi-coin d-inline"></i>
@@ -144,10 +149,10 @@
           </div>
           <div class="m-2">
             <i class="bi bi-clock d-inline"></i>
-            <h4 class="ms-2 d-inline">오늘 (수)</h4>
-            <h4 class="d-inline">12:00</h4>
+            <h4 class="ms-2 d-inline">오늘 (<%=res.getCur_day()%>)</h4>
+            <h4 class="d-inline"><%=res.getStart_time()%></h4>
             <h4 class="d-inline">~</h4>
-            <h4 class="d-inline">21:00</h4>
+            <h4 class="d-inline"><%=res.getEnd_time()%></h4>
           </div>
         </div>
 

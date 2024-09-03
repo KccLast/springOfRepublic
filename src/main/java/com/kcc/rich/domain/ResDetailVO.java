@@ -8,12 +8,14 @@ import lombok.ToString;
 @Setter
 @ToString
 public class ResDetailVO {
-    private Long restaurant_id;
-    private Double restaurant_y;
-    private Double restaurant_x;
-    private String week_end;
-    private String week_start;
-    private String weekend_start;
-    private String weekend_end;
-    private String dayoff;
+
+	private Long restaurant_id;
+	private Double restaurant_y;
+	private Double restaurant_x;
+	private String week_end;
+	private String week_start;
+	private String weekend_start;
+	private String weekend_end;
+	private String dayoff;
+
 }
