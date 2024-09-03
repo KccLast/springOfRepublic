@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.kcc.rich.domain.MenuVO;
+import com.kcc.rich.dto.RestaurantInfoResponse;
 import com.kcc.rich.domain.ReviewCount;
 import com.kcc.rich.domain.ReviewVO;
 import com.kcc.rich.dto.RestaurantHomeResponse;
@@ -18,4 +19,5 @@ public interface RestaurantMapper {
 	List<ReviewCount> selectRestaurantReviewCount(Long restaurant_id);
 	RestaurantReviewResponse selectRestaurantReviewAvg(Long restaurant_id);
 	List<ReviewVO> selectRestaurantReview(Long restaurant_id);
+	RestaurantInfoResponse selectRestaurantInfo(Long restaurant_id);
 }

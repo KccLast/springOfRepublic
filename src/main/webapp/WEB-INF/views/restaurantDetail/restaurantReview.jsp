@@ -35,7 +35,10 @@
 
             <div class="d-flex flex-column align-items-center m-4">
               <i class="bi bi-star-fill text-warning m-3"></i>
-              <h3 class="mb-5"><%=res.getReview_avg()%></h3>
+              <h3 class="mb-5">
+
+                <%=res.getReview_avg()%>
+              </h3>
             </div>
           </div>
 

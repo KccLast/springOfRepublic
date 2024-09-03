@@ -63,6 +63,14 @@
         FROM reviews rev, members mem, reservations res
         WHERE rev.member_id = mem.member_id
           AND rev.reservation_id = res.reservation_id
-          AND res.restaurant_id = #{reservation_id}
+          AND res.restaurant_id = #{restaurant_id}
+    </select>
+
+    <select id="selectRestaurantInfo" resultType="RestaurantInfoResponse">
+        SELECT res.restaurant_id, det.rest_detailexpl, det.restaurant_x, det.restaurant_y, det.week_start, det.week_end, det.weekend_start, det.weekend_end, det.dayoff,
+               res.restaurant_address, res.restaurant_phone
+        FROM res_details det, restaurants res
+        WHERE det.restaurant_id = res.restaurant_id
+          AND res.restaurant_id = #{restaurant_id}
     </select>
 </mapper>

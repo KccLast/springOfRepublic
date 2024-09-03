@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.kcc.rich.domain.MenuVO;
+import com.kcc.rich.dto.RestaurantInfoResponse;
 import com.kcc.rich.domain.ReviewCount;
 import com.kcc.rich.dto.RestaurantHomeResponse;
 import com.kcc.rich.dto.RestaurantMenuResponse;
@@ -68,6 +69,11 @@ public class RestaurantServiceImpl implements RestaurantService{
 		restaurantReviewResponse.setReview_list(restaurantMapper.selectRestaurantReview(restaurant_id));
 		
 		return restaurantReviewResponse;
+	}
+
+	@Override
+	public RestaurantInfoResponse getRestaurantInfo(Long restaurant_id) {
+		return restaurantMapper.selectRestaurantInfo(restaurant_id);
 	}
 
 }
