@@ -87,6 +87,7 @@
 			<artifactId>tomcat-embed-jasper</artifactId>
 		</dependency>
 
+
 		<!--JSTL-->
 		<dependency>
 			<groupId>jakarta.servlet</groupId>
@@ -105,6 +106,27 @@
 			<groupId>org.glassfish.web</groupId>
 			<artifactId>jakarta.servlet.jsp.jstl</artifactId>
 			<version>3.0.1</version>
+
+		</dependency>
+
+
+		<!-- Jackson JSON Processor -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+
+		<!-- Ehcache 의존성 -->
+		<dependency>
+			<groupId>org.ehcache</groupId>
+			<artifactId>ehcache</artifactId>
+			<version>3.10.8</version>
+		</dependency>
+
+		<!-- Spring Cache 의존성 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-cache</artifactId>
 		</dependency>
 
 	</dependencies>

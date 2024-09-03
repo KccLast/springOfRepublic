@@ -10,6 +10,13 @@
   <head>
     <meta charset="UTF-8" />
     <title>Title</title>
+
+    <!-- jQuery and jQuery UI scripts in correct order -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
     <link
       rel="stylesheet"
       href="/resources/css/restaurant/restaurantHome.css"
@@ -28,8 +35,46 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-
+    <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"
+    ></script>
     <script src="/resources/js/restaurant/restaurantHome.js"></script>
+
+
+
+    <script>
+      $(function (){
+        // Initialize datepicker
+        $(".j-datePicker").datepicker({
+          dateFormat: 'yy-mm-dd',
+          showOtherMonths: true,
+          showMonthAfterYear: true,
+          changeYear: true,
+          changeMonth: true,
+          showOn: "both",
+          buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+          buttonImageOnly: true,
+          buttonText: "선택",
+          yearSuffix: "년",
+          monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+          monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+          dayNamesMin: ['일','월','화','수','목','금','토'],
+          dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'],
+          minDate: "0",
+          maxDate: "+1Y",
+          onSelect: function(dateText, inst) {
+            // 날짜를 선택했을 때 처리할 작업을 여기에 작성
+            console.log("선택된 날짜: " + dateText);
+
+            // 예시로 선택한 날짜를 alert로 출력
+            alert("선택된 날짜: " + dateText);
+          }
+        });
+      })
+    </script>
+
   </head>
   <body>
     <%@ include file="/resources/common/header.jsp" %>
@@ -144,7 +189,7 @@
                   ></button>
                 </div>
                 <div class="modal-body">
-                  <h3 class="fw-bold">예약자 정보</h3>
+                  <h3 class="fw-bold">예약 정보</h3>
                   <div class="row g-3 align-items-center">
                     <div class="col-auto">
                       <label for="inputName" class="col-form-label">이름</label>
@@ -155,6 +200,7 @@
                         id="inputName"
                         class="form-control"
                         aria-describedby="nameHelp"
+                        disabled
                       />
                     </div>
                   </div>
@@ -191,7 +237,7 @@
                   <div class="row g-3 align-items-center">
                     <div class="col-auto">
                       <label for="inputDeposit" class="col-form-label"
-                        >1인당 예약금</label
+                        >1 인당 예약금</label
                       >
                     </div>
                     <div class="col-auto">
@@ -200,33 +246,81 @@
                         id="inputDeposit"
                         class="form-control"
                         aria-describedby="depositHelp"
+                        disabled
                       />
                     </div>
                   </div>
                   <!-- 예약 일시 -->
-                </div>
+                  <div class="j-reservation-date-box">
+                    <div class="j-datePicker"></div>
+                    <div class="j-date-circle-box">
+
+
+
+                      <div class="j-timeAndPeopleBox">
+                        <span class="j-people">2명</span>
+                        <div class="j-time">
+                          <span>16:00</span>
+                        </div>
+                      </div>
+
+                      <div class="j-timeAndPeopleBox">
+                        <span class="j-people">2명</span>
+                        <div class="j-time">
+                          <span>16:00</span>
+                        </div>
+                      </div>
+
+                      <div class="j-timeAndPeopleBox">
+                        <span class="j-people">2명</span>
+                        <div class="j-time">
+                          <span>16:00</span>
+                        </div>
+                      </div>
+
+                      <div class="j-timeAndPeopleBox">
+                        <span class="j-people">2명</span>
+                        <div class="j-time">
+                          <span>16:00</span>
+                        </div>
+                      </div>
+
+                      <div class="j-timeAndPeopleBox">
+                        <span class="j-people">2명</span>
+                        <div class="j-time">
+                          <span>16:00</span>
+                        </div>
+                      </div>
+
+                      <div class="j-timeAndPeopleBox">
+                        <span class="j-people">2명</span>
+                        <div class="j-time">
+                          <span>16:00</span>
+                        </div>
+                      </div>
+                      <div class="j-timeAndPeopleBox">
+                        <span class="j-people">2명</span>
+                        <div class="j-time">
+                          <span>16:00</span>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  </div>
                 <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-secondary"
-                    data-bs-dismiss="modal"
-                  >
-                    Close
-                  </button>
                   <button type="button" class="btn btn-primary">
-                    Save changes
+                    결제하기
                   </button>
                 </div>
+                </div>
+
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
   </body>
 </html>

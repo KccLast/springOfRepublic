@@ -1,11 +1,8 @@
 package com.kcc.rich.domain;
-
 import java.util.List;
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-
 @Getter
 @Setter
 @ToString
@@ -26,3 +23,4 @@ public class RestaurantVO {
 	//식당상세와의 관계
 	private ResDetailVO res_detail;
 }
+

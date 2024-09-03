@@ -1,9 +1,14 @@
 package com.kcc.rich.service;
-
-import java.util.List;
-
+import com.kcc.rich.domain.RestaurantVO;
+import com.kcc.rich.mapper.RestaurantsMapper;
+import com.kcc.rich.util.Criteria;
+import com.kcc.rich.util.won.RestaurantJsonDTO;
+import com.kcc.rich.util.won.RestaurantRankDTO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import lombok.extern.slf4j.Slf4j;
+import java.util.List;
 
 import com.kcc.rich.domain.MenuVO;
 import com.kcc.rich.dto.RestaurantInfoResponse;
@@ -11,20 +16,35 @@ import com.kcc.rich.domain.ReviewCount;
 import com.kcc.rich.dto.RestaurantHomeResponse;
 import com.kcc.rich.dto.RestaurantMenuResponse;
 import com.kcc.rich.dto.RestaurantReviewResponse;
-import com.kcc.rich.mapper.RestaurantMapper;
-
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
+@Transactional(readOnly = true)
 @Slf4j
 public class RestaurantServiceImpl implements RestaurantService{
+    private final RestaurantsMapper restaurantsMapper;
 
-	private final RestaurantMapper restaurantMapper;
+    @Override
+    public List<RestaurantRankDTO> getRestaurantList(Criteria criteria){
+        return restaurantsMapper.selectRestaurantsWithPage(criteria);
+    }
 
-	@Override
+    @Override
+    public int getRestaurantCount(Criteria criteria) {
+        return restaurantsMapper.selectRestaurantAll(criteria);
+    }
+
+    @Override
+    @Transactional
+    public int addRestaurant(RestaurantJsonDTO.ResInfo resInfo) {
+        int restaurantsInsertResult = restaurantsMapper.insertRestaurants(resInfo);
+        int resDetailInsertResult = restaurantsMapper.insertResDetail(resInfo);
+        restaurantsMapper.insertMenus(resInfo.getRestaurant_id());
+        return 0;
+    }
+  
+  
+  @Override
 	public RestaurantHomeResponse getRestaurantHome(Long restaurant_id) {
 		return restaurantMapper.selectRestaurant(restaurant_id);
 	}
@@ -76,4 +96,10 @@ public class RestaurantServiceImpl implements RestaurantService{
 		return restaurantMapper.selectRestaurantInfo(restaurant_id);
 	}
 
-}
+
+
+
+
+
+
+

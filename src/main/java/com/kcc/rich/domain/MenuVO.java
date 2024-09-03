@@ -14,3 +14,4 @@ public class MenuVO {
 	private Integer menu_price;
 	private String menu_detail;
 }
+
