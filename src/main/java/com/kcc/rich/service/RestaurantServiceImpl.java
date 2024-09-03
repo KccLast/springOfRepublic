@@ -6,15 +6,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.kcc.rich.domain.MenuVO;
+import com.kcc.rich.domain.ReviewCount;
 import com.kcc.rich.dto.RestaurantHomeResponse;
 import com.kcc.rich.dto.RestaurantMenuResponse;
+import com.kcc.rich.dto.RestaurantReviewResponse;
 import com.kcc.rich.mapper.RestaurantMapper;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
 @Transactional
+@Slf4j
 public class RestaurantServiceImpl implements RestaurantService{
 
 	private final RestaurantMapper restaurantMapper;
@@ -34,6 +38,36 @@ public class RestaurantServiceImpl implements RestaurantService{
 		RestaurantMenuResponse restaurantMenuResponse = new RestaurantMenuResponse(restaurant_id, menu_board, menuList);
 
 		return restaurantMenuResponse;
+	}
+
+	@Override
+	public RestaurantReviewResponse getRestaurantReview(Long restaurant_id) {
+		RestaurantReviewResponse restaurantReviewResponse = new RestaurantReviewResponse();
+
+		// review 별점 평균, 갯수
+		RestaurantReviewResponse tmp = restaurantMapper.selectRestaurantReviewAvg(restaurant_id);
+		restaurantReviewResponse.setReview_avg(Math.round(tmp.getReview_avg() * 10) / 10.0);
+		restaurantReviewResponse.setReview_total(tmp.getReview_total());
+
+		// review 평점 별 총 개수
+		restaurantReviewResponse.setReview_count_list(restaurantMapper.selectRestaurantReviewCount(restaurant_id));
+
+		int reviewTotal = restaurantReviewResponse.getReview_total().intValue();
+		log.info("reviewtTotal : " + reviewTotal);
+
+		List<ReviewCount> reviewCountList = restaurantReviewResponse.getReview_count_list();
+		for (int i = 0; i < reviewCountList.size(); i++) {
+			double avg = ((double)reviewCountList.get(i).getReview_cnt() / reviewTotal) * 100;
+			reviewCountList.get(i).setReview_percent(Math.round(avg * 100) / 100.0);
+			log.info(i + " : " + reviewCountList.get(i).getReview_percent());
+			log.info("cur : " + reviewCountList.get(i).getReview_cnt());
+		}
+		restaurantReviewResponse.setReview_count_list(reviewCountList);
+
+		// review 리스트
+		restaurantReviewResponse.setReview_list(restaurantMapper.selectRestaurantReview(restaurant_id));
+		
+		return restaurantReviewResponse;
 	}
 
 }

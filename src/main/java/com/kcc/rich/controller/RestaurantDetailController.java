@@ -37,10 +37,10 @@ public class RestaurantDetailController {
         return mav;
     }
 
-    @GetMapping("/review")
-    public ModelAndView getReview() {
+    @GetMapping("/review/{restaurant_id}")
+    public ModelAndView getReview(@PathVariable Long restaurant_id) {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("test", "test");
+        mav.addObject("RestaurantReviewResponse", restaurantService.getRestaurantReview(restaurant_id));
         mav.setViewName("restaurantDetail/restaurantReview");
 
         return mav;

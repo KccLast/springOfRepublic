@@ -39,4 +39,30 @@
         FROM restaurants
         WHERE restaurant_id =#{restaurant_id}
     </select>
+
+    <select id="selectRestaurantReviewCount" resultType="ReviewCount">
+        select  rev.review_score, count(*) review_cnt
+        from reservations res, reviews rev
+        where res.reservation_id = rev.reservation_id
+          and res.restaurant_id = #{restaurant_id}
+        group by rev.review_score
+        order by rev.review_score DESC
+    </select>
+
+    <select id="selectRestaurantReviewAvg" resultType="RestaurantReviewResponse">
+        SELECT rsv.restaurant_id AS restaurant_id, AVG(rvw.review_score) AS review_avg, COUNT(rvw.review_score) AS review_total
+        FROM reviews rvw, reservations rsv
+        WHERE rvw.reservation_id = rsv.reservation_id
+          AND rsv.restaurant_id = #{restaurant_id}
+        GROUP BY rsv.restaurant_id
+    </select>
+
+    <select id="selectRestaurantReview" resultType="ReviewVO">
+        SELECT rev.review_date, rev.review_score, rev.review_create, rev.review_img, rev.review_content,
+               mem.member_id, mem.member_nick, mem.member_img
+        FROM reviews rev, members mem, reservations res
+        WHERE rev.member_id = mem.member_id
+          AND rev.reservation_id = res.reservation_id
+          AND res.restaurant_id = #{reservation_id}
+    </select>
 </mapper>
