@@ -20,19 +20,11 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class RestaurantsController {
-<<<<<<< HEAD
 
-    @GetMapping({ "/", "/{page}" })
-    public String showMainPage(@PathVariable(required = false) Integer page, Model model) {
-        if (page == null) {
-            page = 1;
-        }
-=======
 private final RestaurantService restaurantService;
 
     @GetMapping({"/","/{page}"})
     public String showMainPage(Criteria cri, Model model, SearchKeyword searchKeyword) {
->>>>>>> 9b59effdcbea38c677a19f9d04bd3a5aae8949cb
 
         if(searchKeyword != null) {
             if(searchKeyword.getRestaurant_district() != null
