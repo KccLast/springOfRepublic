@@ -40,40 +40,11 @@
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"
     ></script>
-    <script src="/resources/js/restaurant/restaurantHome.js"></script>
-
-
-
-    <script>
-      $(function (){
-        // Initialize datepicker
-        $(".j-datePicker").datepicker({
-          dateFormat: 'yy-mm-dd',
-          showOtherMonths: true,
-          showMonthAfterYear: true,
-          changeYear: true,
-          changeMonth: true,
-          showOn: "both",
-          buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-          buttonImageOnly: true,
-          buttonText: "선택",
-          yearSuffix: "년",
-          monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-          monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-          dayNamesMin: ['일','월','화','수','목','금','토'],
-          dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'],
-          minDate: "0",
-          maxDate: "+1Y",
-          onSelect: function(dateText, inst) {
-            // 날짜를 선택했을 때 처리할 작업을 여기에 작성
-            console.log("선택된 날짜: " + dateText);
-
-            // 예시로 선택한 날짜를 alert로 출력
-            alert("선택된 날짜: " + dateText);
-          }
-        });
-      })
+    <script type="text/javascript">
+      var restaurant_id = ${restaurantHomeResponse.restaurant_id};
     </script>
+
+    <script src="/resources/js/restaurant/restaurantHome.js"></script>
 
   </head>
   <body>
@@ -254,56 +225,6 @@
                   <div class="j-reservation-date-box">
                     <div class="j-datePicker"></div>
                     <div class="j-date-circle-box">
-
-
-
-                      <div class="j-timeAndPeopleBox">
-                        <span class="j-people">2명</span>
-                        <div class="j-time">
-                          <span>16:00</span>
-                        </div>
-                      </div>
-
-                      <div class="j-timeAndPeopleBox">
-                        <span class="j-people">2명</span>
-                        <div class="j-time">
-                          <span>16:00</span>
-                        </div>
-                      </div>
-
-                      <div class="j-timeAndPeopleBox">
-                        <span class="j-people">2명</span>
-                        <div class="j-time">
-                          <span>16:00</span>
-                        </div>
-                      </div>
-
-                      <div class="j-timeAndPeopleBox">
-                        <span class="j-people">2명</span>
-                        <div class="j-time">
-                          <span>16:00</span>
-                        </div>
-                      </div>
-
-                      <div class="j-timeAndPeopleBox">
-                        <span class="j-people">2명</span>
-                        <div class="j-time">
-                          <span>16:00</span>
-                        </div>
-                      </div>
-
-                      <div class="j-timeAndPeopleBox">
-                        <span class="j-people">2명</span>
-                        <div class="j-time">
-                          <span>16:00</span>
-                        </div>
-                      </div>
-                      <div class="j-timeAndPeopleBox">
-                        <span class="j-people">2명</span>
-                        <div class="j-time">
-                          <span>16:00</span>
-                        </div>
-                      </div>
 
                     </div>
                   </div>

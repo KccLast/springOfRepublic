@@ -1,6 +1,9 @@
 package com.kcc.rich.controller;
 
+import com.kcc.rich.domain.ReservationTime;
 import com.kcc.rich.domain.RestaurantVO;
+import com.kcc.rich.dto.ReservationCache;
+import com.kcc.rich.service.RestReservationCacheService;
 import com.kcc.rich.service.RestaurantService;
 import com.kcc.rich.util.Criteria;
 import com.kcc.rich.util.PageDTO;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -21,7 +25,8 @@ import java.util.List;
 @Slf4j
 public class RestaurantsController {
 
-private final RestaurantService restaurantService;
+    private final RestaurantService restaurantService;
+    private final RestReservationCacheService restReservationCacheService;
 
     @GetMapping({"/","/{page}"})
     public String showMainPage(Criteria cri, Model model, SearchKeyword searchKeyword) {
@@ -41,6 +46,31 @@ private final RestaurantService restaurantService;
         System.out.println(pageDTO);
         model.addAttribute("pageDTO",pageDTO);
         model.addAttribute("resList",restaurantList);
+
+        // Cache Save
+        List<String> timeList = new ArrayList<>();
+        for (int i = 10; i <= 18; i+=2) {
+            timeList.add(Integer.toString(i) + ":00");
+        }
+
+        List<ReservationTime> reservationTimeList = new ArrayList<>();
+        for (int i = 4; i <= 30; i++) {
+            reservationTimeList.add(
+                ReservationTime.builder()
+                    .reservation_date("2024-09-" + String.format("%02d", i))
+                    .reservation_time(timeList)
+                    .version(1L)
+                    .build()
+            );
+        }
+
+        ReservationCache reservationCache = ReservationCache.builder()
+            // .restaurant_id(1L)
+            .reservationTimeList(reservationTimeList)
+            .build();
+
+        restReservationCacheService.saveToCache(1L, reservationCache);
+
         return "main";
     }
 }
