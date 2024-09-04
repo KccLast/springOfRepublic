@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,12 +21,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 
-@RestController
+//@Component
 @RequiredArgsConstructor
 @PropertySources(
         @PropertySource("api.properties")
 )
-
 public class ApiProcess {
     private final RestaurantsMapper restaurantsMapper;
     private final RestaurantService restaurantService;
@@ -34,9 +34,8 @@ public class ApiProcess {
 
     private final ObjectMapper objectMapper;
 
-    @GetMapping("api")
-    public void getData(){
-        String url = "http://openapi.seoul.go.kr:8088/"+apiKey+"/json/CrtfcUpsoInfo/1/400";
+    public void getData(int initDataNum){
+        String url = "http://openapi.seoul.go.kr:8088/"+apiKey+"/json/CrtfcUpsoInfo/"+initDataNum+"/"+getTotalData();
         HttpURLConnection urlConnection = null;
         InputStream stream = null;
         String result = null;
@@ -58,8 +57,10 @@ public class ApiProcess {
 
             restaurantJsonDTO.getCrtfcUpsoInfo().setResList(resList);
 
-            for(RestaurantJsonDTO.ResInfo resInfo : resList){
-                restaurantService.addRestaurant(resInfo);
+            if(resList.size() > 0) {
+                for (RestaurantJsonDTO.ResInfo resInfo : resList) {
+                    restaurantService.addRestaurant(resInfo);
+                }
             }
 
         }catch (IOException e){
@@ -96,4 +97,29 @@ public class ApiProcess {
         return result.toString();
     }
 
+    @Scheduled(cron = "0 0 0  * * ?")
+    private int getTotalData(){
+        String url = "http://openapi.seoul.go.kr:8088/"+apiKey+"/json/CrtfcUpsoInfo/1/1";
+
+        HttpURLConnection urlConnection = null;
+        InputStream stream = null;
+        String result = null;
+        RestaurantJsonDTO restaurantJsonDTO = null;
+        try{
+            URL apiUrl = new URL(url);
+            urlConnection = (HttpURLConnection) apiUrl.openConnection();
+            stream = getIntputStream(urlConnection);
+            result = readStreamToString(stream);
+            restaurantJsonDTO = objectMapper.readValue(result, RestaurantJsonDTO.class);
+
+            System.out.println(restaurantJsonDTO.getCrtfcUpsoInfo().getListTotalCount());
+        }catch (IOException e){
+            e.printStackTrace();
+        }finally {
+            if(urlConnection != null){
+                urlConnection.disconnect();
+            }
+        }
+        return restaurantJsonDTO.getCrtfcUpsoInfo().getListTotalCount();
+    }
 }

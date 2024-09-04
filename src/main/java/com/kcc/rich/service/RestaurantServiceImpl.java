@@ -93,6 +93,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 	public RestaurantInfoResponse getRestaurantInfo(Long restaurant_id) {
 		return restaurantsMapper.selectRestaurantInfo(restaurant_id);
 	}
+
+//	@Override
+//	public void getResInfo(Long)
 }
 
 

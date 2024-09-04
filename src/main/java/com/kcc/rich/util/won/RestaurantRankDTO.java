@@ -18,3 +18,5 @@ public class RestaurantRankDTO {
     private String restaurant_menu_board;
     private Double res_avg;
 }
+
+
