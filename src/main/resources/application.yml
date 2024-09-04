@@ -3,9 +3,6 @@ server:
 spring:
   application:
     name: rich
-#  config:
-#    import:
-#      - classpath:application-db.yml
   mvc:
     view:
       prefix: "/WEB-INF/views/"
@@ -13,7 +10,7 @@ spring:
   datasource:
     driver-class-name: oracle.jdbc.OracleDriver
     url: jdbc:oracle:thin:@localhost:1521/XE
-    username: kt
+    username: kcc
     password: 1234
   cache:
     jcache:
