@@ -1,6 +1,7 @@
 package com.kcc.rich.service.member;
 
 import com.kcc.rich.domain.member.MemberVO;
+import com.kcc.rich.dto.UpdatedMemberInfoDTO;
 import com.kcc.rich.mapper.member.MemberMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -58,7 +59,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public String getMemberImg(String memberId) {
+    public UpdatedMemberInfoDTO getMemberImg(String memberId) {
         return mapper.selectMemberImg(memberId);
     }
 }

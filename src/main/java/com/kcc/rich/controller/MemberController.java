@@ -3,6 +3,7 @@ package com.kcc.rich.controller;
 import com.kcc.rich.auth.PrincipalDetail;
 import com.kcc.rich.domain.member.MemberDto;
 import com.kcc.rich.domain.member.MemberVO;
+import com.kcc.rich.dto.UpdatedMemberInfoDTO;
 import com.kcc.rich.service.member.MemberService;
 import com.kcc.rich.util.jina.FileStore;
 import com.kcc.rich.util.jina.UploadImage;
@@ -118,8 +119,14 @@ public class MemberController {
         System.out.println(loginMember);
         int countReservation = memberService.countReservation(loginMember.getUsername());
         int countReview = memberService.countReview(loginMember.getUsername());
-        String img = memberService.getMemberImg(loginMember.getUsername());
+        UpdatedMemberInfoDTO memberImg = memberService.getMemberImg(loginMember.getUsername());
+        String img = memberImg.getMember_img();
 
+        System.out.println(memberImg.toString());
+
+        loginMember.setMember_nick(memberImg.getMember_nick());
+
+        System.out.println(loginMember);
         model.addAttribute("loginMember", loginMember);
         model.addAttribute("countReservation", countReservation);
         model.addAttribute("countReview", countReview);

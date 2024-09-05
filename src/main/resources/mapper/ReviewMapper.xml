@@ -18,7 +18,7 @@
 <!--          AND res.member_id = #{user_id}-->
 <!--          AND rv.review_status != 0-->
 <!--    </select>-->
-    <select id="getAllReviews" resultType="com.kcc.rich.dto.ReviewDTO" parameterType="long">
+    <select id="getAllReviews" resultType="com.kcc.rich.dto.ReviewDTO" parameterType="int">
         SELECT rest.restaurant_name, rest.restaurant_type, rest.restaurant_address, rest.restaurant_img,
                res.reservation_reg_date, res.reservation_per, rv.review_score, rv.review_content, res.reservation_id
         FROM reservations res

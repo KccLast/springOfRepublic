@@ -90,8 +90,14 @@
         WHERE username = #{username}
     </select>
 
-    <select id="selectMemberImg" parameterType="String" resultType="String">
-        SELECT member_img
+<!--    <select id="selectMemberImg" parameterType="String" resultType="String">-->
+<!--        SELECT member_img-->
+<!--        FROM members-->
+<!--        WHERE  username = #{username}-->
+<!--    </select>-->
+
+    <select id="selectMemberImg" parameterType="String" resultType="UpdatedMemberInfoDTO">
+        SELECT member_img,member_nick
         FROM members
         WHERE  username = #{username}
     </select>

@@ -10,6 +10,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,6 +27,7 @@ import java.util.List;
 @PropertySources(
         @PropertySource("api.properties")
 )
+//@Controller
 public class ApiProcess {
     private final RestaurantsMapper restaurantsMapper;
     private final RestaurantService restaurantService;
@@ -33,9 +35,9 @@ public class ApiProcess {
     private String apiKey;
 
     private final ObjectMapper objectMapper;
-
-    public void getData(int initDataNum){
-        String url = "http://openapi.seoul.go.kr:8088/"+apiKey+"/json/CrtfcUpsoInfo/"+initDataNum+"/"+getTotalData();
+    @GetMapping("/api")
+    public void getData(){
+        String url = "http://openapi.seoul.go.kr:8088/"+apiKey+"/json/CrtfcUpsoInfo/"+1+"/"+400;
         HttpURLConnection urlConnection = null;
         InputStream stream = null;
         String result = null;

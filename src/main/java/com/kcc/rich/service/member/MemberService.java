@@ -1,6 +1,7 @@
 package com.kcc.rich.service.member;
 
 import com.kcc.rich.domain.member.MemberVO;
+import com.kcc.rich.dto.UpdatedMemberInfoDTO;
 
 import java.lang.reflect.Member;
 
@@ -14,5 +15,5 @@ public interface MemberService {
     public int countReview(String username);
     public void updateInfo(MemberVO member);
 
-    String getMemberImg(String memberId);
+    UpdatedMemberInfoDTO getMemberImg(String memberId);
 }

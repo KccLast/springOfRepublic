@@ -68,7 +68,7 @@
 
             $('#j-content-body').on('click','.j-content-card',function (){
               let resNumber = $(this).find('input[type=hidden]').val();
-              location.href="/restaurant/"+resNumber+"/home";
+              location.href="/restaurant/home/"+resNumber;
             })
         })
     </script>

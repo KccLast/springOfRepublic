@@ -11,18 +11,27 @@
     <title>마이페이지</title>
     <link rel="stylesheet" href="/resources/css/header.css">
     <link rel="stylesheet" href="/resources/css/members/confirmMyInfo.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 모든 tab-button에서 active 클래스 제거
+            var buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(function(button) {
+                button.classList.remove('active');
+            });
+
+            // 두 번째 자식 (index는 1)에게 active 클래스 추가
+            if (buttons[0]) {
+                buttons[0].classList.add('active');
+            }
+        });
+
+    </script>
 </head>
 <body>
 <%@include file="/resources/common/header.jsp" %>
 <div id="c-container" class="c-flex-col">
     <div id="c-contentBox">
-        <div class="tab-menu">
-            <ul>
-                <li>내 정보</li>
-                <li>내 예약</li>
-                <li>내 리뷰</li>
-            </ul>
-        </div>
+        <%@include file="/resources/common/mypageHeader.jsp" %>
         <%--        "/resources/img/members/profile.png"--%>
         <div class="my-info">
             <div class="profile-container">

@@ -1,5 +1,6 @@
 package com.kcc.rich.controller;
 
+import com.kcc.rich.dto.RestaurantHomeResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +29,9 @@ public class RestaurantDetailController {
     @GetMapping("/home/{restaurant_id}")
     public ModelAndView getHome(@PathVariable Long restaurant_id) {
         ModelAndView mav = new ModelAndView();
+
+        RestaurantHomeResponse restaurantHome = restaurantService.getRestaurantHome(restaurant_id);
+        System.out.println(restaurantHome);
         mav.addObject("restaurantHomeResponse", restaurantService.getRestaurantHome(restaurant_id));
         mav.setViewName("restaurantDetail/restaurantHome");
 

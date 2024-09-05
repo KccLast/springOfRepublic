@@ -41,7 +41,7 @@ public class ReviewService {
 
 
     // 리뷰 목록 가져오기
-    public List<ReviewDTO> getAllReviews(Long userId) {  // ReviewDTO 대신 int 타입으로 수정
+    public List<ReviewDTO> getAllReviews(Integer userId) {  // ReviewDTO 대신 int 타입으로 수정
         return reviewMapper.getAllReviews(userId);
     }
 

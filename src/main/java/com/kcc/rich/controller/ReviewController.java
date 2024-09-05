@@ -1,5 +1,7 @@
 package com.kcc.rich.controller;
 
+import com.kcc.rich.auth.PrincipalDetail;
+import com.kcc.rich.domain.member.MemberVO;
 import com.kcc.rich.dto.ReviewInsertDTO;
 import com.kcc.rich.dto.ReviewUpdateDTO;
 import com.kcc.rich.service.ReservationService;
@@ -10,6 +12,7 @@ import com.kcc.rich.util.jina.UploadImage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -32,9 +35,22 @@ public class ReviewController {
     private final FileStore fileStore;
 
 //    // 리뷰 조회
-    @GetMapping("/list/{user_id}")
-    public String list(Model model, @PathVariable Long user_id) {
-        List<ReviewDTO> reviews = reviewService.getAllReviews(user_id);
+//    @GetMapping("/list/{user_id}")
+//    public String list(Model model, @PathVariable Long user_id) {
+//        List<ReviewDTO> reviews = reviewService.getAllReviews(user_id);
+//
+//        if (reviews.isEmpty()) {
+//            model.addAttribute("message", "No reviews found");
+//        }
+//
+//        model.addAttribute("reviews", reviews);
+//        return "mypage/review1/review_list";
+//    }
+
+    @GetMapping("/list")
+    public String list(Model model, @AuthenticationPrincipal PrincipalDetail principalDetail) {
+        MemberVO loginMember = principalDetail.getMember();
+        List<ReviewDTO> reviews = reviewService.getAllReviews(loginMember.getMember_id());
 
         if (reviews.isEmpty()) {
             model.addAttribute("message", "No reviews found");

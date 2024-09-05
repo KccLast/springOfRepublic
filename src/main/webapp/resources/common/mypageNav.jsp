@@ -20,4 +20,3 @@
 	// 	}
 </script>
 
-href="/reservation/list/${reservation_id}"
