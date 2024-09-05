@@ -64,4 +64,10 @@
     <insert id="insertCancel" parameterType="com.kcc.rich.dto.ReservationDTO">
             INSERT INTO cancel VALUES(#{reservation_Id},sysdate,#{reservation_price})
     </insert>
+
+    <!-- 예약 추가 -->
+    <insert id="insertReservation" parameterType="ReservationRequest">
+        INSERT INTO reservations (reservation_id, member_id, restaurant_id, reservation_per, reservation_price, reservation_date, reservation_reg_date, reservation_status)
+        VALUES (reservation_seq.nextval, #{member_id}, #{restaurant_id}, #{reservation_per}, #{reservation_price}, #{reservation_date}, sysdate, 1);
+    </insert>
 </mapper>

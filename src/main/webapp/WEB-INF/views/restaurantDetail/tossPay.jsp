@@ -24,7 +24,7 @@
 
     const paymentData = {
       amount: amount1, // 예약 인원 * 1인당 예약금
-      orderId: 'ORDER_ID_' + new Date().getTime(), // 고유 주문 ID 생성
+      orderId: '${tossPayDTO.member_id},' + '${tossPayDTO.restaurant_id},' + '${tossPayDTO.reservation_per},' + '${tossPayDTO.reservation_price},' + '${tossPayDTO.reservation_date}', // 고유 주문 ID 생성
       orderName: '식당 예약 - ' + '${tossPayDTO.name}', // 주문명
       successUrl: 'http://localhost:8085/payments/toss/success?member_id=${tossPayDTO.member_id}&restaurant_id=${tossPayDTO.restaurant_id}&reservation_per=${tossPayDTO.reservation_per}&reservation_price='+amount1+'&reservation_date=${tossPayDTO.reservation_date}}', // 결제 성공 시 리다이렉트 URL
       failUrl: 'http://localhost:8085/payments/toss/fail', // 결제 실패 시 리다이렉트 URL

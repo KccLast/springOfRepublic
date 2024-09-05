@@ -27,6 +27,7 @@ import com.kcc.rich.config.TossPaymentConfig;
 import com.kcc.rich.dto.TossPayDTO;
 import com.kcc.rich.dto.TossPaymentResponse;
 import com.kcc.rich.service.PaymentService;
+import com.kcc.rich.service.ReservationService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -38,13 +39,13 @@ import lombok.extern.slf4j.Slf4j;
 public class PaymentController {
 	private final TossPaymentConfig tossPaymentConfig;
 	private final PaymentService paymentService;
+	private final ReservationService reservationService;
 
 	@PostMapping("")
 	public String payment(TossPayDTO tossPayDTO, Model model) {
 		log.info(String.valueOf(tossPayDTO.getReservation_price()));
 		model.addAttribute("tossPayDTO", tossPayDTO);
-
-
+		System.out.println(tossPayDTO.getReservation_date());
 
 		return "restaurantDetail/tossPay";
 	}
@@ -95,11 +96,14 @@ public class PaymentController {
 			TossPaymentResponse paymentResult = response.getBody();
 
 			if (paymentResult != null && paymentResult.getStatus().equals("DONE")) {
-				// 2. 결제 성공 시 DB에 결제 정보 저장
+				// 결제 성공 시 DB에 결제 정보 저장
 				paymentService.savePaymentInfo(paymentResult);
+				// 결제 완료 후 예약 데이터 추가
+				reservationService.addReservaton(paymentResult.getOrderId());
 
-				// 3. 결제 완료 페이지로 이동
+				// 결제 완료 페이지로 이동
 				model.addAttribute("message", "결제가 성공적으로 완료되었습니다.");
+
 				// 내 예약 페이지로 이동
 				return "redirect:/reservation/list/"+loginMember.getMember_id();
 			} else {

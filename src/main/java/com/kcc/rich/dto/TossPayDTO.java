@@ -16,5 +16,5 @@ public class TossPayDTO {
     private String phone;
     private Integer reservation_per;
     private Integer reservation_price;
-    private String reservation_date;
+    private Long reservation_date;
 }

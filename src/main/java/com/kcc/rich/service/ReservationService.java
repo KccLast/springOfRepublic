@@ -2,10 +2,12 @@ package com.kcc.rich.service;
 
 
 import com.kcc.rich.dto.ReservationDTO;
+import com.kcc.rich.dto.ReservationRequest;
 import com.kcc.rich.mapper.ReservationMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -51,5 +53,22 @@ public class ReservationService {
     // 작성된 리뷰 목록 조회
     public List<ReservationDTO> getReviewedReservations(int member_Id) {
         return reservationMapper.getReviewedReservationsByMemberId(member_Id);
+    }
+
+    // 예약 추가
+    public void addReservaton(String orderId){
+        // 문자열 쪼개기
+        String[] strList = orderId.split(",");
+        System.out.println(new Timestamp(Long.parseLong(strList[4])));
+
+        ReservationRequest reservationRequest = ReservationRequest.builder()
+            .member_id(Long.valueOf(strList[0]))
+            .restaurant_id(Long.valueOf(strList[1]))
+            .reservation_per(Integer.valueOf(strList[2]))
+            .reservation_price(Integer.valueOf(strList[3]))
+            .reservation_date(new Timestamp(Long.parseLong(strList[4])))
+            .build();
+
+        reservationMapper.insertReservation(reservationRequest);
     }
 }
