@@ -18,24 +18,26 @@
     // ------ 클라이언트 키로 객체 초기화 ------
     var clientKey = "test_ck_D5GePWvyJnrK0W0k6q8gLzN97Eoq";
     var tossPayments = TossPayments(clientKey);
-    var amount1 = parseInt(${tossPayDTO.reservation_per}) * parseInt(${tossPayDTO.reservation_price});
-
-    // console.log(amount1);
+    var amount1 = parseInt(parseInt(${tossPayDTO.reservation_per}) * parseInt(${tossPayDTO.reservation_price}));
+    var orderId2 = ${tossPayDTO.restaurant_id}+'_${tossPayDTO.reservation_per}' + '_${tossPayDTO.reservation_price}' + '_${tossPayDTO.reservation_date}';
+    orderId2.trim();
+    console.log(amount1);
 
     const paymentData = {
-      amount: amount1, // 예약 인원 * 1인당 예약금
-      orderId: '${tossPayDTO.member_id},' + '${tossPayDTO.restaurant_id},' + '${tossPayDTO.reservation_per},' + '${tossPayDTO.reservation_price},' + '${tossPayDTO.reservation_date}', // 고유 주문 ID 생성
-      orderName: '식당 예약 - ' + '${tossPayDTO.name}', // 주문명
-      successUrl: 'http://localhost:8085/payments/toss/success?member_id=${tossPayDTO.member_id}&restaurant_id=${tossPayDTO.restaurant_id}&reservation_per=${tossPayDTO.reservation_per}&reservation_price='+amount1+'&reservation_date=${tossPayDTO.reservation_date}}', // 결제 성공 시 리다이렉트 URL
-      failUrl: 'http://localhost:8085/payments/toss/fail', // 결제 실패 시 리다이렉트 URL
+        amount: amount1, // 예약 인원 * 1인당 예약금
+        orderId: orderId2, // 고유 주문 ID 생성
+        orderName: '식당 예약 - ' + '${tossPayDTO.name}', // 주문명
+        successUrl: 'http://localhost:8085/payments/toss/success?member_id=${tossPayDTO.member_id}&restaurant_id=${tossPayDTO.restaurant_id}&reservation_per=${tossPayDTO.reservation_per}&reservation_price='+amount1+'&reservation_date=${tossPayDTO.reservation_date}}', // 결제 성공 시 리다이렉트 URL
+        failUrl: 'http://localhost:8085/payments/toss/fail', // 결제 실패 시 리다이렉트 URL
         member_id: '${tossPayDTO.member_id}',
         restaurant_id: '${tossPayDTO.restaurant_id}',
         reservation_per: '${tossPayDTO.reservation_per}',
         reservation_date: '${tossPayDTO.reservation_date}'
     };
 
-    console.log(paymentData.successUrl)
-
+    console.log(paymentData.orderId);
+    // console.log(paymentData.successUrl)
+    console.log(paymentData.amount);
     // ------ 결제창 띄우기 ------
     tossPayments
         .requestPayment("카드", {
@@ -46,8 +48,8 @@
             amount: paymentData.amount, // 결제 금액
             orderId: paymentData.orderId, // 주문번호(주문번호는 상점에서 직접 만들어주세요.)
             orderName: paymentData.orderName, // 구매상품
-            customerName: "김토스", // 구매자 이름
-            successUrl: "http://localhost:8085/payments/toss/success", // 결제 성공 시 이동할 페이지(이 주소는 예시입니다. 상점에서 직접 만들어주세요.)
+            customerName:paymentData.member_id, // 구매자 이름
+            successUrl: "http://localhost:8085/payments/toss/success?restaurant_id=${tossPayDTO.restaurant_id}&reservation_per=${tossPayDTO.reservation_per}&reservation_date=${tossPayDTO.reservation_date}", // 결제 성공 시 이동할 페이지(이 주소는 예시입니다. 상점에서 직접 만들어주세요.)
             failUrl: "http://localhost:8085/payments/toss/fail", // 결제 실패 시 이동할 페이지(이 주소는 예시입니다. 상점에서 직접 만들어주세요.)
         })
         // ------결제창을 띄울 수 없는 에러 처리 ------

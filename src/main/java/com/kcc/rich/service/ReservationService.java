@@ -56,19 +56,7 @@ public class ReservationService {
     }
 
     // 예약 추가
-    public void addReservaton(String orderId){
-        // 문자열 쪼개기
-        String[] strList = orderId.split(",");
-        System.out.println(new Timestamp(Long.parseLong(strList[4])));
-
-        ReservationRequest reservationRequest = ReservationRequest.builder()
-            .member_id(Long.valueOf(strList[0]))
-            .restaurant_id(Long.valueOf(strList[1]))
-            .reservation_per(Integer.valueOf(strList[2]))
-            .reservation_price(Integer.valueOf(strList[3]))
-            .reservation_date(new Timestamp(Long.parseLong(strList[4])))
-            .build();
-
+    public void addReservaton(ReservationRequest reservationRequest){
         reservationMapper.insertReservation(reservationRequest);
     }
 }
