@@ -27,7 +27,18 @@
         <div class="my-info">
             <div class="profile-container">
                 <label for="profile-image-input">
-                    <img id="profile-image" class="profile-image" src="/images/${fileName}" alt="프로필">
+
+<%--                    <img id="profile-image" class="profile-image" src="/images/${fileName}" alt="프로필">--%>
+                    <c:choose>
+                        <c:when test="${loginMember.member_img.startsWith('/resources/img')}">
+                            <img id="profile-image" class="profile-image" src="${filename}" alt="프로필">
+                        </c:when>
+                        <c:otherwise>
+                            <img id="profile-image"  class="profile-image" src="/images/${fileName}" />
+                        </c:otherwise>
+                    </c:choose>
+
+
                     <img class="camera-icon" src="/resources/img/members/camera.png" alt="카메라">
                 </label>
             </div>

@@ -24,37 +24,29 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable);
         http.authorizeHttpRequests(authorize ->
-                authorize.requestMatchers("/members/confirm-myInfo").authenticated()
-                        .requestMatchers("/members/update-info").authenticated()
+                        authorize.requestMatchers("/members/confirm-myInfo").authenticated()
+                                .requestMatchers("/members/update-info").authenticated()
 
-                        .anyRequest().permitAll()
-        ).formLogin(form ->
-                form.loginPage("/members/login")
-                        .loginProcessingUrl("/login")
-                        .defaultSuccessUrl("/members/join"));
-//        http.logout()
-//                .logoutUrl("/logout")
-//                .logoutSuccessUrl("/members/login")
-//                .deleteCookies("JSESSIONID", "remember-me")
-//                .addLogoutHandler(logoutHandler())
-//                .logoutSuccessHandler(logoutSuccessHandler());
+                                .anyRequest().permitAll()
+                ).formLogin(form ->
+                        form.loginPage("/members/login")
+                                .loginProcessingUrl("/login")
+                                .defaultSuccessUrl("/"))
+                .logout(logout -> logout
+                        .logoutUrl("/logout") // 로그아웃 요청 경로
+                        .logoutSuccessUrl("/") // 로그아웃 성공 시 이동할 경로
+                        .deleteCookies("JSESSIONID", "remember-me")
+                        .addLogoutHandler(logoutHandler())
+                        .logoutSuccessHandler(logoutSuccessHandler())
+                );
         return http.build();
-    }
-
-    private void logoutConfigure(HttpSecurity http) throws Exception {
-        http.logout()                                       // 로그아웃 기능이 동작
-                .logoutUrl("/logout")                           // 로그아웃 처리 URL
-                .logoutSuccessUrl("/login")                     // 로그아웃 성공 후 이동 페이지
-                .deleteCookies("JSESSIONID", "remember-me")     // 로그아웃 후 쿠키 삭제
-                .addLogoutHandler(logoutHandler())              // 로그아웃 핸들러
-                .logoutSuccessHandler(logoutSuccessHandler());  // 로그아웃 성공 후 핸들러
     }
 
     // 로그아웃 성공 후 리다이렉트 또는 처리할 핸들러
     private LogoutSuccessHandler logoutSuccessHandler() {
         return (request, response, authentication) -> {
             System.out.println("로그아웃 성공!");
-            response.sendRedirect("/login");
+            response.sendRedirect("/");
         };
     }
 
@@ -69,4 +61,3 @@ public class SecurityConfig {
         };
     }
 }
-

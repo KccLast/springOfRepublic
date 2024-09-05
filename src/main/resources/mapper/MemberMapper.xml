@@ -89,4 +89,10 @@
         ON r.member_id = m.member_id
         WHERE username = #{username}
     </select>
+
+    <select id="selectMemberImg" parameterType="String" resultType="String">
+        SELECT member_img
+        FROM members
+        WHERE  username = #{username}
+    </select>
 </mapper>

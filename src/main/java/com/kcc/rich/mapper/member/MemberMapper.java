@@ -16,4 +16,6 @@ public interface MemberMapper {
     public int countReservation(String username);
     public int countReview(String username);
     public void updateInfo(MemberVO member);
+
+    String selectMemberImg(String memberId);
 }
