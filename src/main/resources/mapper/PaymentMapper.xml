@@ -5,7 +5,7 @@
 <mapper namespace="com.kcc.rich.mapper.PaymentMapper">
     <!-- 결제 정보를 DB에 저장하는 SQL -->
     <insert id="insertPayment" parameterType="PaymentVO">
-        INSERT INTO payment (payment_key, order_id, status)
-        VALUES (#{paymentKey}, #{orderId}, #{status})
+        INSERT INTO payment (id,payment_key, order_id, status)
+        VALUES (PAYMENT_SEQ.nextval,#{paymentKey}, #{orderId}, #{status})
     </insert>
 </mapper>

@@ -29,17 +29,15 @@ public class ReservationController {
 //    }
     
     //member_id로 조회(완)
-//    @GetMapping("/list/{member_id}")
-//    public String listReservations(Model model, @PathVariable(required = false) Integer member_id, @AuthenticationPrincipal PrincipalDetail principalDetail) {
-//
-//        MemberVO loginMember = principalDetail.getMember();
-//        List<ReservationDTO> reservations = reservationService.getReservationsByMemberId(loginMember.getMember_id());
-//        System.out.println(reservations);
-//        System.out.println(member_id);
-//        model.addAttribute("reservations", reservations);
-//        model.addAttribute("member_id", member_id);
-//        return "mypage/reservation1/reservation_list";
-//    }
+    @GetMapping("/list/{member_id}")
+    public String listReservations(Model model, @PathVariable(required = false) Integer member_id) {
+        List<ReservationDTO> reservations = reservationService.getReservationsByMemberId(member_id);
+        System.out.println(reservations);
+        System.out.println(member_id);
+        model.addAttribute("reservations", reservations);
+        model.addAttribute("member_id", member_id);
+        return "mypage/reservation1/reservation_list";
+    }
     @GetMapping("/list")
     public String listReservations(Model model, @AuthenticationPrincipal PrincipalDetail principalDetail) {
 
