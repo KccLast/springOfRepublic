@@ -116,7 +116,9 @@ public class ReviewController {
 
     // 리뷰 삽입 (AJAX로 처리된다고 가정)
     @PostMapping("/insert")
-    public String insertReview(ReviewInsertDTO reviewInsertDTO) {
+    public String insertReview(ReviewInsertDTO reviewInsertDTO,@AuthenticationPrincipal PrincipalDetail principalDetail) {
+        MemberVO loginMember = principalDetail.getMember();
+        reviewInsertDTO.setMember_id(loginMember.getMember_id());
         System.out.println(reviewInsertDTO);
         if(reviewInsertDTO.getReview_img() != null) {
             UploadImage uploadImage = fileStore.storeFile(reviewInsertDTO.getReview_img());
@@ -125,7 +127,7 @@ public class ReviewController {
             reviewInsertDTO.setFullPath("/resources/img/logo.png");
         }
         reviewService.saveReview(reviewInsertDTO);
-        return "redirect:/review/list/"+reviewInsertDTO.getMember_id();
+        return "redirect:/review/list";
     }
 
 

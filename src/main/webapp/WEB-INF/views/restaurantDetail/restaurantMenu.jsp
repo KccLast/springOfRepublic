@@ -26,6 +26,12 @@
     var restaurant_id = ${RestaurantMenuResponse.restaurant_id};
     console.log('Restaurant ID: ' + restaurant_id);
   </script>
+
+    <style>
+      .m-2.menu-img{
+        width: 30%;
+      }
+    </style>
   </head>
   <body>
     <%@ include file="/resources/common/header.jsp" %>
@@ -37,16 +43,16 @@
         <div class="menu-board">
           <h3 class="m-4 fw-bold">메뉴판</h3>
           <div class="wrap-vertical p-2 m-auto">
-            <img class="m-2" src="/resources/img/main/image85.png" />
-            <img class="m-2" src="/resources/img/main/image1.png" />
-            <img class="m-2" src="/resources/img/main/image85.png" />
-            <img class="m-2" src="/resources/img/main/image85.png" />
-            <img class="m-2" src="/resources/img/main/image85.png" />
-            <img class="m-2" src="/resources/img/main/image85.png" />
-            <img class="m-2" src="/resources/img/main/image85.png" />
-            <img class="m-2" src="/resources/img/main/image85.png" />
-            <img class="m-2" src="/resources/img/main/image85.png" />
-            <img class="m-2" src="/resources/img/main/image85.png" />
+            <img class="m-2 menu-img" src="/resources/img/menuboard1.png" />
+            <img class="m-2 menu-img" src="/resources/img/menuboard2.png" />
+<%--            <img class="m-2" src="/resources/img/main/image85.png" />--%>
+<%--            <img class="m-2" src="/resources/img/main/image85.png" />--%>
+<%--            <img class="m-2" src="/resources/img/main/image85.png" />--%>
+<%--            <img class="m-2" src="/resources/img/main/image85.png" />--%>
+<%--            <img class="m-2" src="/resources/img/main/image85.png" />--%>
+<%--            <img class="m-2" src="/resources/img/main/image85.png" />--%>
+<%--            <img class="m-2" src="/resources/img/main/image85.png" />--%>
+<%--            <img class="m-2" src="/resources/img/main/image85.png" />--%>
           </div>
         </div>
         <hr />
@@ -63,7 +69,7 @@
                   </h5>
                   <h3 class="mt-3 text-orange"><fmt:formatNumber value="${menu.menu_price}" pattern="#,###"/></h3>
                 </div>
-                <img class="m-2 col-2" src="/resources/img/main/image85.png" />
+                <img class="m-2 col-2" src="/images/${menu.menu_img}" />
                 <hr class="m-3" />
               </li>
             </c:forEach>

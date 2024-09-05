@@ -4,10 +4,12 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @ToString
-public class RestaurantRankDTO {
+public class RestaurantRankDTO implements Serializable {
     private Long restaurant_id;
     private String restaurant_name;
     private String restaurant_phone;

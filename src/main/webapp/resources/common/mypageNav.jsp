@@ -11,7 +11,7 @@
 
 		let member_id = location.pathname.substring(location.pathname.lastIndexOf('/')+1);
 		function openNavTab(url){
-			location.href="/reservation/"+url+"/"+member_id;
+			location.href="/reservation/"+url;
 		}
 
 	// let member_id = location.pathname.substring(location.pathname.lastIndexOf('/')+1);

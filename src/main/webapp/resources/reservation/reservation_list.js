@@ -3,7 +3,7 @@ $(document).ready(function () {
     $('.cancel-button').on('click', function (event) {
 
 
-      let del = $('#d-reservation-box').find('input[type=radio]:checked').parent().parent().find(".d-r-name > span").text();
+      let del = $('#d-reservation-box').find('input[type=radio]:checked').parent().parent().find(".d-r-name > input").val();
        let price =  $('#d-reservation-box').find('input[type=radio]:checked').parent().parent().find(".d-res-price > span").text();
 
         var reservationId = $(this).data('reservation_id');

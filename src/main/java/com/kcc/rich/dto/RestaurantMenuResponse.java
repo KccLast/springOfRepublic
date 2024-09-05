@@ -4,17 +4,14 @@ import java.util.List;
 
 import com.kcc.rich.domain.MenuVO;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class RestaurantMenuResponse {
 	private Long restaurant_id;
 	private String menu_board;

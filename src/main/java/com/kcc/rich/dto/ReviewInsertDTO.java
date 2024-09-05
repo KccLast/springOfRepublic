@@ -15,7 +15,7 @@ public class ReviewInsertDTO {
     private Long reservation_id;
     private String review_content;
     private Integer review_score;
-    private Long member_id;
+    private Integer member_id;
 
 
     private String fullPath;

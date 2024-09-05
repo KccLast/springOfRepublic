@@ -8,8 +8,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>예약 페이지</title>
+        <script src="https://code.jquery.com/jquery-3.7.1.js"
+                integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+                crossorigin="anonymous"></script>
+</head>
     <link rel="stylesheet" href="/resources/reservation/reservation_list.css">
     <link rel="stylesheet" href="/resources/css/header.css">
+<style>
+    .d-res-img-box > img{
+        height: 180px !important;
+    }
+</style>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // 모든 tab-button에서 active 클래스 제거
@@ -36,9 +45,9 @@
 
             <nav>
                 <ul>
-                    <li><a href="/reservation/list/${member_id}" class="btn-reservation">예약</a></li>
-                    <li><a href="/reservation/completed/${member_id}" class="btn-complete">방문 완료</a></li>
-                    <li><a href="/reservation/cancel/${member_id}"  class="btn-cancel">예약 취소</a></li>
+                    <li><a href="/reservation/list" class="btn-reservation">예약</a></li>
+                    <li><a href="/reservation/completed" class="btn-complete">방문 완료</a></li>
+                    <li><a href="/reservation/cancel"  class="btn-cancel">예약 취소</a></li>
                 </ul>
             </nav>
         </div>
@@ -52,11 +61,12 @@
                     <div class="d-res-content-ch-box">
 
                         <div class ="d-res-img-box">
-                            <img src="/resources/image/${reservation.restaurant_img}" alt="Insert Image"/>
+                            <img src="/images/${reservation.restaurant_img}" alt="Insert Image"/>
                         </div>
                         <div class="d-res-name-box">
                             <div class="d-r-name">
                                 <span>${reservation.restaurant_name}</span>
+                                <input type="hidden" id="j-res-id" value="${reservation.reservation_Id}">
                             </div>
                             <div class="d-r-district">
                                 <span>${reservation.restaurant_address}</span>
@@ -78,11 +88,14 @@
 
 
             </c:forEach>
+
+            <div class="cancel-button-size">
+                <button class="cancel-button">예약 취소</button>
+            </div>
         </div>
 
-        <div class="cancel-button-size">
-            <button class="cancel-button">예약 취소</button>
-        </div>
+
+
 <%--        리뷰작성--%>
 <%--        <form action="${pageContext.request.contextPath}/review/submit" method="post">--%>
 <%--            <label for="title">Title:</label>--%>
