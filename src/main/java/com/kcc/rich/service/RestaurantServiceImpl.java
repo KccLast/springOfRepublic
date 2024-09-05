@@ -39,7 +39,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 	public int addRestaurant(RestaurantJsonDTO.ResInfo resInfo) {
 		int restaurantsInsertResult = restaurantsMapper.insertRestaurants(resInfo);
 		int resDetailInsertResult = restaurantsMapper.insertResDetail(resInfo);
-		restaurantsMapper.insertMenus(resInfo.getRestaurant_id());
+		//restaurantsMapper.insertMenus(resInfo.getRestaurant_id());
 		return 0;
 	}
 

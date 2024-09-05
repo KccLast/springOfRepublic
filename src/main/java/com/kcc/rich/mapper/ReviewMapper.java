@@ -17,7 +17,7 @@ public interface ReviewMapper {
     void updateReview(ReviewUpdateDTO reviewUpdateDTO);
 
     // 모든 리뷰 가져오기
-    List<ReviewDTO> getAllReviews(Long user_id);
+    List<ReviewDTO> getAllReviews(Integer user_id);
 
 
 

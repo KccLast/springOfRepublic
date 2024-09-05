@@ -6,6 +6,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import javax.cache.Cache;
 import javax.cache.CacheManager;
+import javax.cache.Caching;
 
 import com.kcc.rich.util.won.OptimisticLockException;
 import com.kcc.rich.util.won.RestDateTime;
@@ -29,6 +30,14 @@ public class RestReservationCacheServiceImpl implements RestReservationCacheServ
 
 	// 캐시에 데이터 쓰기
 	public void saveToCache(Long key, ReservationCache value) {
+		CacheManager cacheManager2 = Caching.getCachingProvider().getCacheManager();
+		Cache<Integer, ArrayList> totalStatistics = cacheManager.getCache("totalStatistics", Integer.class, ArrayList.class);
+		if(cacheManager2 == null) {
+			System.out.println("CacheManager is null");
+		}
+		if(totalStatistics == null) {
+			System.out.println("RestaurantCache is null");
+		}
 		Cache<Long, ReservationCache> cache = getRestCache();
 		cache.put(key, value);
 		System.out.println("Data saved to cache: Key = " + key + ", Value = " + value);

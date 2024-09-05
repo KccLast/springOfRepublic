@@ -1,8 +1,11 @@
 package com.kcc.rich.controller;
 
+import com.kcc.rich.auth.PrincipalDetail;
+import com.kcc.rich.domain.member.MemberVO;
 import com.kcc.rich.dto.ReservationDTO;
 import com.kcc.rich.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,22 +29,47 @@ public class ReservationController {
 //    }
     
     //member_id로 조회(완)
-    @GetMapping("/list/{member_id}")
-    public String listReservations(Model model, @PathVariable(required = false) Integer member_id) {
-        List<ReservationDTO> reservations = reservationService.getReservationsByMemberId(member_id);
+//    @GetMapping("/list/{member_id}")
+//    public String listReservations(Model model, @PathVariable(required = false) Integer member_id, @AuthenticationPrincipal PrincipalDetail principalDetail) {
+//
+//        MemberVO loginMember = principalDetail.getMember();
+//        List<ReservationDTO> reservations = reservationService.getReservationsByMemberId(loginMember.getMember_id());
+//        System.out.println(reservations);
+//        System.out.println(member_id);
+//        model.addAttribute("reservations", reservations);
+//        model.addAttribute("member_id", member_id);
+//        return "mypage/reservation1/reservation_list";
+//    }
+    @GetMapping("/list")
+    public String listReservations(Model model, @AuthenticationPrincipal PrincipalDetail principalDetail) {
+
+        MemberVO loginMember = principalDetail.getMember();
+
+        List<ReservationDTO> reservations = reservationService.getReservationsByMemberId(loginMember.getMember_id());
+
         System.out.println(reservations);
-        System.out.println(member_id);
+        System.out.println(loginMember.getMember_id());
         model.addAttribute("reservations", reservations);
-        model.addAttribute("member_id", member_id);
+        model.addAttribute("member_id", loginMember.getMember_id());
         return "mypage/reservation1/reservation_list";
     }
 
 
+//    // 예약 취소 확인 페이지로 이동
+//    @GetMapping("/cancel/{member_Id}")
+//    public String confirmCancel(@PathVariable(required = true) Integer member_Id, Model model) {
+//        // ReservationDTO reservation = reservationService.getReservationById(reservation_Id);
+//        List<ReservationDTO> cancelByMemberId = reservationService.getCancelByMemberId(member_Id);
+//        System.out.println(cancelByMemberId);
+//        model.addAttribute("cancelledReservations", cancelByMemberId);
+//        return "mypage/reservation1/reservation_confirm_delete";
+//    }
+
     // 예약 취소 확인 페이지로 이동
-    @GetMapping("/cancel/{member_Id}")
-    public String confirmCancel(@PathVariable(required = true) Integer member_Id, Model model) {
-        // ReservationDTO reservation = reservationService.getReservationById(reservation_Id);
-        List<ReservationDTO> cancelByMemberId = reservationService.getCancelByMemberId(member_Id);
+    @GetMapping("/cancel")
+    public String confirmCancel( Model model,@AuthenticationPrincipal PrincipalDetail principalDetail) {
+        MemberVO loginMember = principalDetail.getMember();
+        List<ReservationDTO> cancelByMemberId = reservationService.getCancelByMemberId(loginMember.getMember_id());
         System.out.println(cancelByMemberId);
         model.addAttribute("cancelledReservations", cancelByMemberId);
         return "mypage/reservation1/reservation_confirm_delete";
@@ -64,17 +92,31 @@ public class ReservationController {
     }
 
     //방문완료페이지
-    @GetMapping("/completed/{memberId}")
-    public String listCompletedReservations(@PathVariable(required = false) Integer memberId, Model model) {
+//    @GetMapping("/completed/{memberId}")
+//    public String listCompletedReservations(@PathVariable(required = false) Integer memberId, Model model) {
+////        if(reservation_status == null) {
+////            reservation_status = 2;
+////        }
+//
+//        List<ReservationDTO> completedReservations = reservationService.getCompletedReservations(memberId);
+//        System.out.println(completedReservations);
+//        model.addAttribute("completedReservations", completedReservations);
+//        return "mypage/reservation1/reservation_completed";
+//    }
+
+    //방문완료페이지
+    @GetMapping("/completed")
+    public String listCompletedReservations(@AuthenticationPrincipal PrincipalDetail principalDetail, Model model) {
 //        if(reservation_status == null) {
 //            reservation_status = 2;
 //        }
-
-        List<ReservationDTO> completedReservations = reservationService.getCompletedReservations(memberId);
+        MemberVO loginMember = principalDetail.getMember();
+        List<ReservationDTO> completedReservations = reservationService.getCompletedReservations(loginMember.getMember_id());
         System.out.println(completedReservations);
         model.addAttribute("completedReservations", completedReservations);
         return "mypage/reservation1/reservation_completed";
     }
+
 
     /*보류해두는것
 

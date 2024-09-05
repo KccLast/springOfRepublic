@@ -36,18 +36,18 @@ public class RestTimeCacheService {
     public RestDateTime getRestDateTime(Long restId, String date) {
 
 
-                Cache<Long, RestaurantReservationCacheDTO> restCache = getRestCache();
-                RestaurantReservationCacheDTO restaurantReservationCacheDTO = restCache.get(restId);
+        Cache<Long, RestaurantReservationCacheDTO> restCache = getRestCache();
+        RestaurantReservationCacheDTO restaurantReservationCacheDTO = restCache.get(restId);
 
-                if (restaurantReservationCacheDTO == null) {
-                    throw new RestTimeDataNotFoundException("데이터를 찾을 수 없습니다.");
-                }
+        if (restaurantReservationCacheDTO == null) {
+            throw new RestTimeDataNotFoundException("데이터를 찾을 수 없습니다.");
+        }
 
-                return restaurantReservationCacheDTO
-                        .getRestDateTimeList().stream()
-                        .filter(restDateTime -> restDateTime.getDate().equals(date))
-                        .findFirst()
-                        .orElseThrow(() -> new RestTimeDataNotFoundException("데이터를 찾을 수 없습니다."));
+        return restaurantReservationCacheDTO
+                .getRestDateTimeList().stream()
+                .filter(restDateTime -> restDateTime.getDate().equals(date))
+                .findFirst()
+                .orElseThrow(() -> new RestTimeDataNotFoundException("데이터를 찾을 수 없습니다."));
 
 
     }

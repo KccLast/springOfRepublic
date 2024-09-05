@@ -2,6 +2,7 @@ package com.kcc.rich.mapper.member;
 
 
 import com.kcc.rich.domain.member.MemberVO;
+import com.kcc.rich.dto.UpdatedMemberInfoDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -17,5 +18,5 @@ public interface MemberMapper {
     public int countReview(String username);
     public void updateInfo(MemberVO member);
 
-    String selectMemberImg(String memberId);
+    UpdatedMemberInfoDTO selectMemberImg(String memberId);
 }

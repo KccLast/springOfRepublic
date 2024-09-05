@@ -41,11 +41,26 @@
     ></script>
     <script type="text/javascript">
       var restaurant_id = ${restaurantHomeResponse.restaurant_id};
-      console.log('Restaurant ID: ' + restaurant_id);
     </script>
 
     <script src="/resources/js/restaurant/restaurantHome.js"></script>
-
+  <style>
+    #c-contentBox{
+      padding: 5%!important;
+    }
+    h2{
+      font-weight: bolder!important;
+    }
+    body{
+      font-weight: 1200!important;
+    }
+    .ms-3.d-inline{
+      font-weight: bolder !important;
+    }
+    h4{
+      font-weight: bolder !important;
+    }
+  </style>
   </head>
   <body>
 

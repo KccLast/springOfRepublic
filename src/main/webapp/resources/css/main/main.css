@@ -117,6 +117,9 @@ a{
     width: 50%;
     height: 100%;
     font-size: small;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .j-card-star{
     width: 20%;

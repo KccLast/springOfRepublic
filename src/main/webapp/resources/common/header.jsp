@@ -42,7 +42,7 @@
                     </form>
                 </sec:authorize>
 
-                <a href="/members/mypage">My Page</a>
+                <a href="/members/confirm-myInfo">My Page</a>
                 <i class="ps-3 pe-3 pt-1 bi bi-bell h5"></i>
             </div>
         </div>
