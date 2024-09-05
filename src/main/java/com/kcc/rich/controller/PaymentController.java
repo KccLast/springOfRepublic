@@ -1,5 +1,6 @@
 package com.kcc.rich.controller;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -90,13 +91,13 @@ public class PaymentController {
 				"https://api.tosspayments.com/v1/payments/confirm",
 				entity, TossPaymentResponse.class);
 
-			System.out.println("Response: " + response);
-			System.out.println("Response Body: " + response.getBody());
-			System.out.println("Response paymentKey: " + response.getBody().getPaymentKey());
-			System.out.println("Response orderId: " + response.getBody().getOrderId());
+//			System.out.println("Response: " + response);
+//			System.out.println("Response Body: " + response.getBody());
+//			System.out.println("Response paymentKey: " + response.getBody().getPaymentKey());
+//			System.out.println("Response orderId: " + response.getBody().getOrderId());
 			// System.out.println("Response amount: " + response.getBody().getAmount());
 			// System.out.println("Response customerName: " + response.getBody().getCustomerName());
-			System.out.println("Response Status: " + response.getBody().getStatus());
+//			System.out.println("Response Status: " + response.getBody().getStatus());
 
 			TossPaymentResponse paymentResult = response.getBody();
 
@@ -109,8 +110,13 @@ public class PaymentController {
 					.restaurant_id(restaurant_id)
 					.reservation_per(reservation_per)
 					.reservation_price(Math.toIntExact(amount))
+						.reservation_date(new Timestamp(reservation_date))
 					.build();
+
+				System.out.println(reservationRequest.toString());
+
 				reservationService.addReservaton(reservationRequest);
+
 
 				// 결제 완료 페이지로 이동
 				model.addAttribute("message", "결제가 성공적으로 완료되었습니다.");

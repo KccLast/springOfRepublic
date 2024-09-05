@@ -78,7 +78,7 @@
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <div class="carousel-image">
-                  <img src="/resources/img/main/image85.png" />
+                  <img src="/resources/img/main/fofo.png" />
                 </div>
                 <!-- <img src="/resources/img/main/image85.png" /> -->
               </div>

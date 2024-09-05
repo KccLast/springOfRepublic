@@ -44,29 +44,29 @@ public class RestaurantsController {
         model.addAttribute("pageDTO",pageDTO);
         model.addAttribute("resList",restaurantList);
 
-//        // Cache Save
-//        List<String> timeList = new ArrayList<>();
-//        for (int i = 10; i <= 18; i+=2) {
-//            timeList.add(Integer.toString(i) + ":00");
-//        }
-//
-//        List<ReservationTime> reservationTimeList = new ArrayList<>();
-//        for (int i = 4; i <= 30; i++) {
-//            reservationTimeList.add(
-//                ReservationTime.builder()
-//                    .reservation_date("2024-09-" + String.format("%02d", i))
-//                    .reservation_time(timeList)
-//                    .version(1L)
-//                    .build()
-//            );
-//        }
-//
-//        ReservationCache reservationCache = ReservationCache.builder()
-//            // .restaurant_id(1L)
-//            .reservationTimeList(reservationTimeList)
-//            .build();
-//
-//        restReservationCacheService.saveToCache(1L, reservationCache);
+        // Cache Save
+        List<String> timeList = new ArrayList<>();
+        for (int i = 10; i <= 18; i+=2) {
+            timeList.add(Integer.toString(i) + ":00");
+        }
+
+        List<ReservationTime> reservationTimeList = new ArrayList<>();
+        for (int i = 4; i <= 30; i++) {
+            reservationTimeList.add(
+                ReservationTime.builder()
+                    .reservation_date("2024-09-" + String.format("%02d", i))
+                    .reservation_time(timeList)
+                    .version(1L)
+                    .build()
+            );
+        }
+
+        ReservationCache reservationCache = ReservationCache.builder()
+            // .restaurant_id(1L)
+            .reservationTimeList(reservationTimeList)
+            .build();
+
+        restReservationCacheService.saveToCache(1L, reservationCache);
 
         return "main";
     }
