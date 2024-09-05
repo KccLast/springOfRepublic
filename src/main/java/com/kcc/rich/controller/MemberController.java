@@ -115,19 +115,23 @@ public class MemberController {
     @GetMapping("/confirm-myInfo")
     public String confirmMyInfo(@AuthenticationPrincipal PrincipalDetail principalDetail, Model model) {
         MemberVO loginMember = principalDetail.getMember();
+        System.out.println(loginMember);
         int countReservation = memberService.countReservation(loginMember.getUsername());
         int countReview = memberService.countReview(loginMember.getUsername());
+        String img = memberService.getMemberImg(loginMember.getUsername());
 
         model.addAttribute("loginMember", loginMember);
         model.addAttribute("countReservation", countReservation);
         model.addAttribute("countReview", countReview);
 
-        String memberImg = loginMember.getMember_img();
-        System.out.println("memberImg = " + memberImg);
-        int lastSlashIndex = memberImg.lastIndexOf('\\');
-        System.out.println("lastSlashIndex = " + lastSlashIndex);
-        String fileName = (lastSlashIndex != -1) ? memberImg.substring(lastSlashIndex + 1) : memberImg;
-        System.out.println("fileName = " + fileName);
+        System.out.println("파일 이름 검사");
+        String fileName =null;
+        if(img == null || img.contains("profile.png") || "".equals(img)){
+            fileName = "C:\\Users\\KOSA\\Desktop\\abv\\profile.png";
+        }else{
+            fileName = img;
+        }
+        System.out.println(img);
 
         model.addAttribute("fileName", fileName);
 
@@ -141,10 +145,10 @@ public class MemberController {
 
         String memberImg = loginMember.getMember_img();
         int lastSlashIndex = memberImg.lastIndexOf('\\');
-        String fileName = (lastSlashIndex != -1) ? memberImg.substring(lastSlashIndex + 1) : memberImg;
-        System.out.println("fileName = " + fileName);
+        //String fileName = (lastSlashIndex != -1) ? memberImg.substring(lastSlashIndex + 1) : memberImg;
+        System.out.println("fileName = " + memberImg);
 
-        model.addAttribute("fileName", fileName);
+        model.addAttribute("fileName", memberImg);
         model.addAttribute("loginMember", loginMember);
 
         return "members/updateMyInfo";
@@ -176,7 +180,7 @@ public class MemberController {
         System.out.println("memberDto = " + memberDto);
         System.out.println("updateDtoToVO(memberDto) = " + updateDtoToVO(memberDto));
         memberService.updateInfo(updateDtoToVO(memberDto));
-        return "redirect:/members/update-info";
+        return "redirect:/members/confirm-myInfo";
     }
 
 

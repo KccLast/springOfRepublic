@@ -56,4 +56,9 @@ public class MemberServiceImpl implements MemberService {
     public void updateInfo(MemberVO member) {
         mapper.updateInfo(member);
     }
+
+    @Override
+    public String getMemberImg(String memberId) {
+        return mapper.selectMemberImg(memberId);
+    }
 }

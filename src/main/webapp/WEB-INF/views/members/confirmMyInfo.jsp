@@ -26,12 +26,13 @@
         <%--        "/resources/img/members/profile.png"--%>
         <div class="my-info">
             <div class="profile-container">
+<%--                <img class="profile-image" src="/images/${fileName}" />--%>
                 <c:choose>
-                    <c:when test="${loginMember.member_img != null}">
-                        <img class="profile-image" src="/images/${fileName}" />
+                    <c:when test="${loginMember.member_img.startsWith('/resources/img')}">
+                        <img class="profile-image" src="${filename}" alt="프로필">
                     </c:when>
                     <c:otherwise>
-                        <img class="profile-image" src="/resources/img/members/profile.png" alt="프로필">
+                        <img class="profile-image" src="/images/${fileName}" />
                     </c:otherwise>
                 </c:choose>
             </div>
