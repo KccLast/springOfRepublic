@@ -1,16 +1,53 @@
-// $(function () {
-//   $("#nav-home-tab").on("click", function (e) {
-//     e.preventDefault();
-//     // console.log();
+$(function () {
+  $("#nav-home-tab").on("click", function (e) {
+    e.preventDefault();
+    // console.log();
 
-//     $.ajax({
-//       type: "GET",
-//       url: "http://localhost:8085/restaurant/home",
-//       success: function (response) {
-//         //
+    $.ajax({
+      type: "GET",
+      url: `http://localhost:8085/restaurant/home/${restaurant_id}`,
+      success: function (response) {
+        //
+      },
+    });
+  });
 
-//         console.log("home");
-//       },
-//     });
-//   });
-// });
+  $("#nav-menu-tab").on("click", function (e) {
+    e.preventDefault();
+    // console.log();
+
+    $.ajax({
+      type: "GET",
+      url: `http://localhost:8085/restaurant/menu/${restaurant_id}`,
+      success: function (response) {
+        //
+      },
+    });
+  });
+
+  $("#nav-review-tab").on("click", function (e) {
+    e.preventDefault();
+    // console.log();
+
+    $.ajax({
+      type: "GET",
+      url: `http://localhost:8085/restaurant/review/${restaurant_id}`,
+      success: function (response) {
+        //
+      },
+    });
+  });
+
+  $("#nav-info-tab").on("click", function (e) {
+    e.preventDefault();
+    // console.log();
+
+    $.ajax({
+      type: "GET",
+      url: `http://localhost:8085/restaurant/info/${restaurant_id}`,
+      success: function (response) {
+        //
+      },
+    });
+  });
+});
