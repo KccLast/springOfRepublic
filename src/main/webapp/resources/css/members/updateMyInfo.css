@@ -56,13 +56,13 @@
 }
 
 input[type="text"] {
-    width: 30%;
+    width: 100%;
     padding: 8px;
     margin-bottom: 10px;
 }
 
 textarea {
-    width: 30%;
+    width: 100%;
 }
 
 .btn-update-info {
@@ -71,6 +71,7 @@ textarea {
     border: none;
     padding: 10px;
     border-radius: 20px;
-    width: 30%;
+    width: 100%;
     margin-top: 20px;
 }
+
