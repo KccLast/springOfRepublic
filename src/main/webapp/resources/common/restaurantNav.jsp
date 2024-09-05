@@ -9,7 +9,8 @@
     <link
       rel="stylesheet"
       href="/resources/css/restaurant/restaurantDetail.css"
-    /><script src="/resources/js/restaurant/restaurantNav.js"></script>
+    />
+      <script src="/resources/js/restaurant/restaurantNav.js"></script>
   </head>
   <body>
     <!-- nav bar, 뒤로가기 버튼, 공유하기 버튼 -->

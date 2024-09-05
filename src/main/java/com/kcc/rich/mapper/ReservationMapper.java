@@ -1,6 +1,8 @@
 package com.kcc.rich.mapper;
 
 import com.kcc.rich.dto.ReservationDTO;
+import com.kcc.rich.dto.ReservationRequest;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -32,5 +34,6 @@ public interface ReservationMapper {
 
     void insertCancel(ReservationDTO res);
 
+    void insertReservation(ReservationRequest reservationRequest);
 
 }

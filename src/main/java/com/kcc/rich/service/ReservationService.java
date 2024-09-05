@@ -2,10 +2,12 @@ package com.kcc.rich.service;
 
 
 import com.kcc.rich.dto.ReservationDTO;
+import com.kcc.rich.dto.ReservationRequest;
 import com.kcc.rich.mapper.ReservationMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -51,5 +53,10 @@ public class ReservationService {
     // 작성된 리뷰 목록 조회
     public List<ReservationDTO> getReviewedReservations(int member_Id) {
         return reservationMapper.getReviewedReservationsByMemberId(member_Id);
+    }
+
+    // 예약 추가
+    public void addReservaton(ReservationRequest reservationRequest){
+        reservationMapper.insertReservation(reservationRequest);
     }
 }

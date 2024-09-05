@@ -89,8 +89,15 @@ $(function (){
     $('#payment-button').on('click', function () {
       // timestamp
       if (selectedDate && selectedTime) {
-        let timestamp = new Date(`${selectedDate} ${selectedTime}`).getTime();
+        // 선택된 날짜와 시간을 결합해 Date 객체 생성
+        let dateTimeString = `${selectedDate} ${selectedTime}`;
+        let dateTime = new Date(dateTimeString);
+
+        // 타임스탬프 값 생성 (밀리초 단위)
+        let timestamp = dateTime.getTime();
         console.log('타임스탬프: ' + timestamp);
+
+        // 생성된 타임스탬프를 폼의 히든 필드에 설정
         $('input[name="reservation_date"]').val(timestamp);
         $('#reservation-info').submit();
       } else {
