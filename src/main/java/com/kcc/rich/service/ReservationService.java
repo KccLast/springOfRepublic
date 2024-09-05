@@ -1,5 +1,6 @@
 package com.kcc.rich.service;
 
+
 import com.kcc.rich.dto.ReservationDTO;
 import com.kcc.rich.mapper.ReservationMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ public class ReservationService {
 //        return reservationMapper.getReservation();
 //    }
 
+      public void setReservationToVisited();
 
     public List<ReservationDTO> getReservationsByMemberId(int member_Id) {
         return reservationMapper.getReservationsByMemberId(member_Id);

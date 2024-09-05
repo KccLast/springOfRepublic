@@ -19,7 +19,6 @@
 #  type-aliases-package: com.kcc.rich.domain # 타입 별칭 패키지 (필요 시)
 server:
   port: 8085
-
 spring:
   application:
     name: rich
@@ -39,16 +38,15 @@ spring:
       max-request-size: 10MB
 mybatis:
   mapper-locations: classpath:mapper/*.xml # 매퍼 파일 경로
-  type-aliases-package: com.kcc.rich.domain.member # 타입 별칭 패키지 (필요 시)
-  configuration:
-    map-underscore-to-camel-case: true # 언더스코어를 카멜케이스로 자동 변환
-
+  type-aliases-package: com.kcc.rich.domain, com.kcc.rich.dto # 타입 별칭 패키지 (필요 시)
 logging:
   level:
     com.kcc.rich: debug # MyBatis 쿼리 로깅 활성화
-
 file:
   path: C:/Users/KOSA/Desktop/abv
-
-
-
+payment:
+  toss:
+    test_client_api_key : test_ck_Z61JOxRQVEzBdO1dYJ9DrW0X9bAq
+    test_secret_api_key : test_gsk_docs_OaPz8L5KdmQXkzRz3y47BMw6
+    success_url : "http://localhost:8085/payments/toss/success"
+    fail_url : "http://localhost:8085/payments/toss/fail

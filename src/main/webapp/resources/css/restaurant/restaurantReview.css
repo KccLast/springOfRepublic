@@ -1,0 +1,190 @@
+.round-text{
+    /* display: inline-block; */
+    background-color: #D9D9D9; /* 배경색 */
+    color: #000; /* 텍스트 색상 */
+    padding: 20px 40px; /* 패딩 조정 */
+    border-radius: 50px; /* 둥근 모서리 */
+    font-weight: bold; /* 텍스트 굵게 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    width: 70%;
+    margin: 5% auto;
+}
+
+.progress {
+    height: 8px !important;
+  }
+  
+  .progress-bar {
+    height: 8px;
+  }
+  
+  h5 {
+    margin-bottom: 0;
+  }
+  
+  .text-muted {
+    color: #ccc !important;
+  }
+
+.reveiw-detail{
+    letter-spacing: 0.1em !important;
+    line-height: 1.7 !important;
+}
+
+.bi-star-fill{
+    font-size: 35px;
+}
+
+.bi-star-fill.small{
+    font-size: 25px;
+}
+
+.profile-box {
+    /* width: 50px; */
+    height: 50px; 
+    border-radius: 55%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+.profile {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.reservation-btn{
+    display: flex;
+    justify-content: center;
+}
+
+.res-btn{
+    width: 62%;
+    height: 10%;
+    margin: auto;
+    font-size: xx-large !important;
+    font-weight: bold !important;
+}
+
+#j-menu-list-box{
+    height: 10%;
+    width: 100%;
+  
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.j-menu-button1{
+    height: 100%;
+    width: 8%;
+    
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+.j-menu-button1 span{
+    height: 100%;
+}
+.j-menu-button2{
+    height: 100%;
+    width: 70%;
+   
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+.btn.btn-outline-secondary{
+    width: 90%;
+    height: 80%;
+    border-radius: 30px;
+}
+.j-review-box-con{
+    width: 100%;
+    height: 60%;
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    
+}
+.j-review-box-header{
+    width: 100%;
+    height: 20%;
+    border: 1px solid black ;
+    display: flex;
+    justify-content: left;
+}
+.j-review-box-name{
+    width: 100%;
+    height: 10%;
+    border: 1px solid black ;
+    display: flex;
+    justify-content: space-between;
+}
+.j-reivew-box-star-rank{
+    width: 20%;
+    height: 100%;
+    border: 1px solid black;
+    display: flex;
+
+}
+.j-review-star{
+    width: 50%;
+    height: 100%;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.j-review-rank{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.j-review-box-date{
+    width: 20%;
+    height: 100%;
+    border: 1px solid black;
+}
+.j-review-box-content{
+    width: 100%;
+    height: 70%;
+    border: 1px solid black ;
+    display: flex;
+}
+.j-review-box-content-img{
+    width: 30%;
+    height: 100%;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.j-review-box-content-img > img{
+    width: 60%;
+    height: 90%;
+}
+.j-review-box-content-con{
+    width: 70%;
+    height: 100%;
+    border: 1px solid black;
+}
+.j-review-box-header-img{
+    height: 100%;
+    width: 10%;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.j-review-box-header-img > img{
+    height: 60%;
+    width: 40%;
+    border-radius: 50px;
+    
+}
+.j-review-box-header-name{
+    height: 100%;
+    width: 10%;
+    border: 1px solid black;
+}
+
