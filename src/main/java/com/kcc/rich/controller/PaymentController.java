@@ -3,11 +3,14 @@ package com.kcc.rich.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.kcc.rich.auth.PrincipalDetail;
+import com.kcc.rich.domain.member.MemberVO;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,8 +54,9 @@ public class PaymentController {
 		@RequestParam String paymentKey,
 		@RequestParam String orderId,
 		@RequestParam Long amount,
-		Model model) {
-
+		Model model,@AuthenticationPrincipal PrincipalDetail principalDetail) {
+		MemberVO loginMember = principalDetail.getMember();
+		System.out.println("성공한 로그인 유저 : "+loginMember.toString());
 		try {
 			// 1. 결제 승인 요청 보내기
 			RestTemplate restTemplate = new RestTemplate();
@@ -97,7 +101,7 @@ public class PaymentController {
 				// 3. 결제 완료 페이지로 이동
 				model.addAttribute("message", "결제가 성공적으로 완료되었습니다.");
 				// 내 예약 페이지로 이동
-				return "payment/paymentSuccess";
+				return "redirect:/reservation/list/"+loginMember.getMember_id();
 			} else {
 				// 결제 실패 시
 				model.addAttribute("message", "결제 승인 실패: " + paymentResult.getMessage());
