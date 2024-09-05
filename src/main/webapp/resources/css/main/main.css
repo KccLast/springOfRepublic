@@ -1,53 +1,173 @@
-html,
-body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    overflow-y: hidden;
+* {
+    cursor: default;
+}
+a{
+    text-decoration: none !important;
+    color: black !important;
+}
+#c-contentBox{
+    background-color: white !important;
+}
+
+#j-search-box{
+    height: 50px;
+    width: 40%;
+    border: 1px solid black;
 
 }
-div{
-    box-sizing: border-box;
+#j-contentTop{
+    height: 15%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
-header {
-    width: 100%;
-    height: 70px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
-    overflow-y: hidden;
-    overflow-x: hidden;
-    background-color: red;
+#j-slogan{
+    margin-bottom: 1%;
+    font-size: 28px;
+    font-weight: 1000;
+    color: #00712D;
 }
-footer{
-    width: 100%;
-    height: 70px;
-    overflow-y: hidden;
-    overflow-x: hidden;
+#j-search-box{
+    border-radius: 30px;
+
 }
-#c-container{
-    margin-top: 70px;
-    width: 100%;
+#j-search-type{
+    width: 20%;
     height: 100%;
 
 }
-#c-contentBox{
-    width: 85%;
-    height: 800px;
-    border-radius: 10px;
-    box-sizing: border-box;
-    overflow: auto;
+#j-type-select{
+    width: 100%;
+    height: 100%;
+    outline: none;
+    border: none;
+    text-align: center;
+    font-weight: bold;
+    background-color: transparent;
+}
+#j-search-input{
+    width: 70%;
+    height: 100%;
+
+}
+#j-search-input > input {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+#j-search-button{
+    width: 10%;
+    height: 100%;
+    justify-content: flex-end !important;
 
 }
 
-.c-flex-col{
+#j-content-body{
+    margin-top: 1%;
+
+    width: 100%;
+    height: 75%;
+}
+.j-content-box{
+    height: 50%;
+    width: 100%;
+
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+/*식당 카드 css*/
+.j-content-card{
+    height: 95%;
+    width: 20%;
+    border: 1px solid rgba(33,33,33,0.3);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+.j-content-card:hover{
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+/*카드 헤더 css*/
+.j-card-head{
+    height: 15%;
+    width: 90%;
+    padding-top: 3%;
+
+}
+.j-card-name-rank{
+    border-bottom: 1.5px solid rgba(33,33,33,0.3);
+
+}
+.j-card-res-name{
+    width: 50%;
+    height: 100%;
+    font-size: small;
+}
+.j-card-star{
+    width: 20%;
+    display: flex;
+    justify-content: end;
+    padding-right: 2%;
+}
+.j-card-rank{
+    width: 23%;
+    text-align: end;
+    font-weight: bolder;
+}
+/*카드 헤더 css*/
+
+
+/*카드 이미지 css*/
+.j-card-img{
+    height: 70%;
+    width: 100%;
+}
+.j-card-img > img{
+    height: 95%;
+    width: 90%;
+}
+
+/*카드 이미지 css*/
+.j-card-footer{
+    height: 15%;
+    width: 100%;
+    text-align: left;
+    padding-left: 5%;
+    font-weight: bolder;
+    color: #8F8F8F;
+    font-size: 15px;
+}
+.j-flex-row-center{
+    display: flex;
     justify-content: center;
+    align-items: center;
+
+}
+
+#content-footer{
+   margin-top: 1%;
+    height: 5%;
+    width: 100%;
+}
+#j-paging{
+
+    height: 100%;
+    width: 30%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
     align-items: center;
 }
 
-
-#c-contentBox{
-    background-color: bisque;
+.j-page-num{
+    transition: font-size 0.3s ease-in-out;
 }
-
-
+.j-page-num:hover{
+    font-size: 20px;
+}

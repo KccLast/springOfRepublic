@@ -8,9 +8,11 @@
     <link rel="stylesheet" href="/resources/css/header.css">
 </head>
 <body>
-<%@ include file="/resources/common/header.jsp" %>
-<div id="c-container" class="c-flex-col">
 
+<%--오류난다 풉킥--%>
+<%@ include file="/resources/common/header.jsp" %>
+<!-- class c-flex-center 추가 8.30 3:01-->
+<div id="c-container" class="c-flex-col">
     <div id="c-contentBox">
 
 
