@@ -17,6 +17,9 @@
       href="/resources/css/restaurant/restaurantInfo.css"
     />
     <link rel="shortcut icon" href="#" />
+    <script type="text/javascript">
+      var restaurant_id = ${restaurantInfoResponse.restaurant_id};
+    </script>
   </head>
   <body>
     <%@ include file="/resources/common/header.jsp" %>

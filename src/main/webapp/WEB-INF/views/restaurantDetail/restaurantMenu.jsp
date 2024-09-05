@@ -22,6 +22,9 @@
       rel="stylesheet"
       href="/resources/css/restaurant/restaurantMenu.css"
     />
+    <script type="text/javascript">
+    var restaurant_id = ${restaurantMenuResponse.restaurant_id};
+  </script>
   </head>
   <body>
     <%@ include file="/resources/common/header.jsp" %>

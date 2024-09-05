@@ -17,7 +17,7 @@ public class ReservationService {
 //        return reservationMapper.getReservation();
 //    }
 
-      public void setReservationToVisited();
+      // public void setReservationToVisited();
 
     public List<ReservationDTO> getReservationsByMemberId(int member_Id) {
         return reservationMapper.getReservationsByMemberId(member_Id);

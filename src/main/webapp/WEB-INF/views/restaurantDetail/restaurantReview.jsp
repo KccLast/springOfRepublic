@@ -19,6 +19,9 @@
       rel="stylesheet"
       href="/resources/css/restaurant/restaurantReview.css"
     />
+    <script type="text/javascript">
+      var restaurant_id = ${restaurantReviewResponse.restaurant_id};
+    </script>
   </head>
   <body>
     <%@ include file="/resources/common/header.jsp" %>
