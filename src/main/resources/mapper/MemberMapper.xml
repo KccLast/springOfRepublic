@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kcc.rich.mapper.member.MemberMapper">
+    <resultMap id="memberResultMap" type="MemberVO">
+        <result property="member_id" column="member_id"/>
+        <result property="password" column="password"/>
+        <result property="member_name" column="member_name"/>
+        <result property="member_nick" column="member_nick"/>
+        <result property="username" column="username"/>
+        <result property="member_address" column="member_address"/>
+        <result property="member_phone" column="member_phone"/>
+        <result property="member_img" column="member_img"/>
+        <result property="member_create" column="member_create"/>
+        <result property="member_update" column="member_update"/>
+        <result property="member_explain" column="member_explain"/>
+    </resultMap>
+
+    <insert id="insertMember" parameterType="MemberVO">
+        INSERT INTO members(member_id, password, member_name, member_nick,
+                            username, member_address, member_phone, member_img)
+        VALUES (member_seq.nextval, #{password}, #{member_name}, #{member_nick},
+                #{username}, #{member_address}, #{member_phone}, #{member_img})
+    </insert>
+
+    <select id="loginMember" resultMap="memberResultMap">
+        SELECT *
+        FROM members
+        WHERE username = #{username}
+        AND password = #{password}
+    </select>
+
+    <select id="findByEmail" resultMap="memberResultMap">
+        SELECT *
+        FROM members
+        WHERE username = #{username}
+    </select>
+
+    <!--  중복 이메일 수 확인-->
+    <select id="checkEmailExists">
+        SELECT COUNT(*)
+        FROM members
+        WHERE username = #{username}
+    </select>
+
+    <update id="updatePwd">
+        UPDATE members
+        SET password = #{password}
+        WHERE username = #{username}
+    </update>
+
+    <update id="updateInfo" parameterType="MemberVO">
+        UPDATE members
+        <set>
+            <if test="member_nick != null and member_nick != ''">
+                member_nick = #{member_nick},
+            </if>
+            <if test="member_explain != null and member_explain != ''">
+                member_explain = #{member_explain},
+            </if>
+            <if test="member_address != null and member_address != ''">
+                member_address = #{member_address},
+            </if>
+            <if test="member_phone != null and member_phone != ''">
+                member_phone = #{member_phone},
+            </if>
+            <if test="member_img != null and member_img != ''">
+                member_img = #{member_img},
+            </if>
+            member_update = sysdate
+        </set>
+        WHERE username = #{username}
+    </update>
+
+    <select id="countReservation" resultType="int" parameterType="String">
+        SELECT COUNT(*)
+        FROM reservations r
+        JOIN members m
+        ON r.member_id = m.member_id
+        WHERE username = #{username}
+    </select>
+
+    <select id="countReview" resultType="int" parameterType="String">
+        SELECT COUNT(*)
+        FROM reviews r
+        JOIN members m
+        ON r.member_id = m.member_id
+        WHERE username = #{username}
+    </select>
+</mapper>

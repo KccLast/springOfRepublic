@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!doctype html>
 <html lang="">
 <head>
@@ -21,17 +23,25 @@
                 <li>내 리뷰</li>
             </ul>
         </div>
+        <%--        "/resources/img/members/profile.png"--%>
         <div class="my-info">
             <div class="profile-container">
-                <img class="profile-image" src="/resources/img/members/profile.png" alt="프로필">
+                <c:choose>
+                    <c:when test="${loginMember.member_img != null}">
+                        <img class="profile-image" src="/images/${fileName}" />
+                    </c:when>
+                    <c:otherwise>
+                        <img class="profile-image" src="/resources/img/members/profile.png" alt="프로필">
+                    </c:otherwise>
+                </c:choose>
             </div>
-            <p>닉네임</p>
-            <p class="p-email">user01.naver.com</p>
+            <p>${loginMember.member_nick}</p>
+            <p class="p-email">${loginMember.username}</p>
             <div class="res-rvw-num">
-                <p>예약한 식당 <br>3개</p>
-                <p>작성한 리뷰 <br>5개</p>
+                <p>예약한 식당 <br>${countReservation}개</p>
+                <p>작성한 리뷰 <br>${countReview}개</p>
             </div>
-            <button class="btn-update-info">회원 정보 수정</button>
+            <button class="btn-update-info"><a class="a-update" href="/members/update-info">회원 정보 수정</a></button>
         </div>
     </div>
 </div>

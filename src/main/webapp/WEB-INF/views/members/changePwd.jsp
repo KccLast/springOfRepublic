@@ -19,7 +19,7 @@
             <img src="/resources/img/logo.png" alt="로고">
             <h2>비밀번호 변경</h2>
             <form class="login-form" action="/members/login" method="post">
-                <input type="text" id="member_pwd" name="member_pwd" placeholder="새 비밀번호 입력">
+                <input type="text" id="password" name="password" placeholder="새 비밀번호 입력">
                 <input type="text" id="member_new_pwd" name="member_new_pwd" placeholder="새 비밀번호 확인">
                 <input type="submit" class="btn-next" value="비밀번호 변경">
             </form>

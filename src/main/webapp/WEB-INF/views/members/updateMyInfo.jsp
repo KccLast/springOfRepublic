@@ -1,4 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<!-- Spring form 태그 라이브러리 추가 -->
 <!doctype html>
 <html lang="">
 <head>
@@ -23,17 +26,40 @@
         </div>
         <div class="my-info">
             <div class="profile-container">
-                <img class="profile-image" src="/resources/img/members/profile.png" alt="프로필">
-                <img class="camera-icon" src="/resources/img/members/camera.png" alt="카메라 ">
+                <label for="profile-image-input">
+                    <img id="profile-image" class="profile-image" src="/images/${fileName}" alt="프로필">
+                    <img class="camera-icon" src="/resources/img/members/camera.png" alt="카메라">
+                </label>
             </div>
-            <p>닉네임</p>
-            <input type="text" name="member_name" placeholder="닉네임을 입력하세요">
-            <p class="p-email">자기소개</p>
-            <textarea name="self-intro" rows="5" cols="50"
-                      placeholder="자신을 알릴 수 있는 소개글을 작성해 주세요."></textarea>
-            <button class="btn-update-info">회원 정보 수정</button>
+
+            <!-- Spring form 태그로 변경 -->
+            <form:form id="update-form" modelAttribute="loginMember" action="/members/update-info" method="post" enctype="multipart/form-data">
+                <input type="file" id="profile-image-input" name="member_img" style="display: none;"
+                       onchange="profile_img(event)">
+
+                <p>닉네임</p>
+                <form:input path="member_nick" id="member_nick" placeholder="닉네임을 입력하세요"
+                            value="${loginMember.member_nick}"/>
+
+                <p>자기소개</p>
+                <textarea id="member_explain" name="member_explain" rows="5" cols="50"
+                          placeholder="자신을 알릴 수 있는 소개글을 작성해 주세요.">${loginMember.member_explain}</textarea>
+
+                <p>주소</p>
+                <form:input path="member_address" id="member_address" placeholder="주소를 입력하세요"
+                            value="${loginMember.member_address}"/>
+
+                <p>전화번호</p>
+                <form:input path="member_phone" id="member_phone" placeholder="전화번호를 입력하세요"
+                            value="${loginMember.member_phone}"/>
+
+                <button class="btn-update-info" type="submit">회원 정보 수정</button>
+            </form:form>
         </div>
     </div>
 </div>
+
+<!-- JavaScript 파일 링크 -->
+<script src="/resources/js/members/updateMyInfo.js"></script>
 </body>
 </html>

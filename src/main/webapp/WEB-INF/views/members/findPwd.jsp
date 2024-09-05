@@ -18,14 +18,15 @@
         <div class="login-content">
             <img src="/resources/img/logo.png" alt="로고">
             <h2>비밀번호 찾기</h2>
-            <form class="login-form" action="/members/change-pwd" method="post">
+            <form class="login-form" id="find-pwd-form" action="/members/change-pwd" method="post">
                 <p>가입된 계정의 이메일을 정확히 기입해주시길 바랍니다.</p>
                 <input type="text" id="member_name" name="member_name" placeholder="이름을 입력하세요">
-                <input type="text" id="member_email" name="member_email" placeholder="이메일을 입력하세요">
-                <input class="btn-next" type="submit" value="다음">
+                <input type="text" id="username" name="username" placeholder="이메일을 입력하세요">
+                <input class="btn-next" type="submit"  value="다음">
             </form>
         </div>
     </div>
 </div>
+<script src="/resources/js/members/findPwd.js"></script>
 </body>
 </html>
