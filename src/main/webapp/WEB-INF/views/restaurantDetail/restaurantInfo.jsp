@@ -18,7 +18,8 @@
     />
     <link rel="shortcut icon" href="#" />
     <script type="text/javascript">
-      var restaurant_id = ${restaurantInfoResponse.restaurant_id};
+      var restaurant_id = ${RestaurantInfoResponse.restaurant_id};
+      console.log('Restaurant ID: ' + restaurant_id);
     </script>
   </head>
   <body>

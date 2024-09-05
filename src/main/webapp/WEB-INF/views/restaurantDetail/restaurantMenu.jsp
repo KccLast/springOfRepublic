@@ -23,7 +23,8 @@
       href="/resources/css/restaurant/restaurantMenu.css"
     />
     <script type="text/javascript">
-    var restaurant_id = ${restaurantMenuResponse.restaurant_id};
+    var restaurant_id = ${RestaurantMenuResponse.restaurant_id};
+    console.log('Restaurant ID: ' + restaurant_id);
   </script>
   </head>
   <body>

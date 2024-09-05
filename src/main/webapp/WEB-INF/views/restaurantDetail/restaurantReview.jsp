@@ -20,7 +20,8 @@
       href="/resources/css/restaurant/restaurantReview.css"
     />
     <script type="text/javascript">
-      var restaurant_id = ${restaurantReviewResponse.restaurant_id};
+      var restaurant_id = ${RestaurantReviewResponse.restaurant_id};
+      console.log('Restaurant ID: ' + restaurant_id);
     </script>
   </head>
   <body>
