@@ -37,7 +37,6 @@ spring:
       enabled: true
       max-file-size: 10MB
       max-request-size: 10MB
-
 mybatis:
   mapper-locations: classpath:mapper/*.xml # 매퍼 파일 경로
   type-aliases-package: com.kcc.rich.domain.member # 타입 별칭 패키지 (필요 시)
@@ -50,5 +49,6 @@ logging:
 
 file:
   path: C:/Users/KOSA/Desktop/abv
+
 
 
