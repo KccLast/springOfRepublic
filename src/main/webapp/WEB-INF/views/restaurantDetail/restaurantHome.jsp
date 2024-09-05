@@ -41,84 +41,12 @@
     ></script>
     <script type="text/javascript">
       var restaurant_id = ${restaurantHomeResponse.restaurant_id};
-
-    $(function () {
-
-      $('#payment-button').on('click', function () {
-        // 예약 정보 수집
-
-        console.log("hi");
-        // 현재 시간으로 고유 주문 ID 설정 (변경 필요)
-        const timestamp = new Date().getTime();
-        document.querySelector('input[name="orderId"]').value = 'ORDER_ID_' + timestamp;
-
-        // 폼 제출
-        document.getElementById('hiddenForm').submit();
-//         const reservationInfo = {
-//           restaurantId: restaurant_id,
-//           name: $('#inputName').val(),
-//           phone: $('#inputPhone').val(),
-//           person: $('#inputPerson').val(),
-//           deposit: $('#inputDeposit').val(),
-//           // date: $('.j-datePicker').datepicker('getDate'), // 선택된 예약 일자
-//         };
-//
-//         // 결제 요청을 위한 데이터를 설정합니다.
-//         // const paymentData = {
-//         //   amount: reservationInfo.person * reservationInfo.deposit, // 예약 인원 * 1인당 예약금
-//         //   orderId: 'ORDER_ID_' + new Date().getTime(), // 고유 주문 ID 생성
-//         //   orderName: '식당 예약 - ' + reservationInfo.name, // 주문명
-//         //   successUrl: 'http://localhost:8085/payments/toss/success', // 결제 성공 시 리다이렉트 URL
-//         //   failUrl: 'http://localhost:8085/payments/toss/fail', // 결제 실패 시 리다이렉트 URL
-//         // };
-// // paymentData 객체 정의
-//         const paymentData = {
-//           amount: reservationInfo.person * reservationInfo.deposit, // 예약 인원 * 1인당 예약금
-//           orderId: 'ORDER_ID_' + new Date().getTime(), // 고유 주문 ID 생성
-//           orderName: '식당 예약 - ' + reservationInfo.name, // 주문명
-//           successUrl: 'http://localhost:8085/payments/toss/success', // 결제 성공 시 리다이렉트 URL
-//           failUrl: 'http://localhost:8085/payments/toss/fail', // 결제 실패 시 리다이렉트 URL
-//         };
-//
-// // 폼을 동적으로 생성하고 제출하는 함수
-//           // 새 폼 요소를 생성
-//           const form = document.createElement('form');
-//           form.method = 'POST';
-//           form.action = '/payment'; // 요청을 보낼 URL
-//
-//           // paymentData의 각 속성에 대해 숨겨진 입력 필드를 생성
-//           for (const key in paymentData) {
-//             if (paymentData.hasOwnProperty(key)) {
-//               const input = document.createElement('input');
-//               input.type = 'hidden'; // 숨겨진 필드
-//               input.name = key; // 필드 이름
-//               input.value = paymentData[key]; // 필드 값
-//               form.appendChild(input); // 폼에 추가
-//             }
-//           }
-//
-//           form.submit();
-
-      });
-    });
-
-
-
-
     </script>
 
     <script src="/resources/js/restaurant/restaurantHome.js"></script>
 
   </head>
   <body>
-
-  <form id="hiddenForm" action="/payment" method="POST" style="display: none;">
-    <input type="hidden" name="amount" value="15000"> <!-- 예: 3명 * 5000원 -->
-    <input type="hidden" name="orderId" value="ORDER_ID_{{timestamp}}"> <!-- 예: 고유 주문 ID -->
-    <input type="hidden" name="orderName" value="식당 예약 - ABC Restaurant"> <!-- 예: 주문명 -->
-    <input type="hidden" name="successUrl" value="http://localhost:8085/payments/toss/success"> <!-- 결제 성공 URL -->
-    <input type="hidden" name="failUrl" value="http://localhost:8085/payments/toss/fail"> <!-- 결제 실패 URL -->
-  </form>
 
     <%@ include file="/resources/common/header.jsp" %>
     <!-- class c-flex-center 추가 8.30 3:01-->
@@ -233,7 +161,10 @@
                 </div>
                 <div class="modal-body">
                   <h3 class="fw-bold">예약 정보</h3>
+                  <form id="reservation-info" action="/payments/toss" method="POST">
                   <div class="row g-3 align-items-center">
+                    <input type="hidden" name="restaurant_id" value="${restaurantHomeResponse.restaurant_id}">
+                    <input type="hidden" name="reservation_date" value=""> <!-- Timestamp hidden input 추가 -->
                     <div class="col-auto">
                       <label for="inputName" class="col-form-label">이름</label>
                     </div>
@@ -241,6 +172,7 @@
                       <input
                         type="text"
                         id="inputName"
+                        name="name"
                         class="form-control"
                         aria-describedby="nameHelp"
 <%--                        disabled--%>
@@ -257,6 +189,7 @@
                       <input
                         type="text"
                         id="inputPhone"
+                        name="phone"
                         class="form-control"
                         aria-describedby="phoneHelp"
                       />
@@ -272,6 +205,7 @@
                       <input
                         type="text"
                         id="inputPerson"
+                        name="reservation_per"
                         class="form-control"
                         aria-describedby="personHelp"
                       />
@@ -287,6 +221,7 @@
                       <input
                         type="text"
                         id="inputDeposit"
+                        name="reservation_price"
                         class="form-control"
                         aria-describedby="depositHelp"
 <%--                        disabled--%>
@@ -301,76 +236,12 @@
                     </div>
                   </div>
 
-                  </div>
                 <div class="modal-footer">
                   <button id="payment-button" type="button" class="btn btn-primary">
                     결제하기
                   </button>
                 </div>
-<%--                <script>--%>
-<%--                  main();--%>
-
-<%--                  async function main() {--%>
-<%--                    const button = document.getElementById("payment-button");--%>
-<%--                    // ------  결제위젯 초기화 --------%>
-<%--                    const clientKey = "test_gck_docs_Ovk5rk1EwkEbP0W43n07xlzm";--%>
-<%--                    const tossPayments = TossPayments(clientKey);--%>
-<%--                    // 회원 결제--%>
-<%--                    const customerKey = "R_oppQQtIN-hRzauuDBH0";--%>
-<%--                    const widgets = tossPayments.widgets({--%>
-<%--                      customerKey,--%>
-<%--                    });--%>
-<%--                    // 비회원 결제--%>
-<%--                    // const widgets = tossPayments.widgets({ customerKey: TossPayments.ANONYMOUS });--%>
-
-<%--                    // ------ 주문의 결제 금액 설정 --------%>
-<%--                    await widgets.setAmount({--%>
-<%--                      currency: "KRW",--%>
-<%--                      value: document.getElementById("inputDeposit") * document.getElementById("inputPerson"),--%>
-<%--                    });--%>
-
-<%--                    await Promise.all([--%>
-<%--                      // ------  결제 UI 렌더링 --------%>
-<%--                      widgets.renderPaymentMethods({--%>
-<%--                        selector: "#payment-method",--%>
-<%--                        variantKey: "DEFAULT",--%>
-<%--                      }),--%>
-<%--                      // ------  이용약관 UI 렌더링 --------%>
-<%--                      // widgets.renderAgreement({ selector: "#agreement", variantKey: "AGREEMENT" }),--%>
-<%--                    ]);--%>
-
-<%--                    // ------  주문서의 결제 금액이 변경되었을 경우 결제 금액 업데이트 --------%>
-<%--                    // coupon.addEventListener("change", async function () {--%>
-<%--                    //   if (coupon.checked) {--%>
-<%--                    //     await widgets.setAmount({--%>
-<%--                    //       currency: "KRW",--%>
-<%--                    //       value: 50000 - 5000,--%>
-<%--                    //     });--%>
-<%--                    //--%>
-<%--                    //     return;--%>
-<%--                    //   }--%>
-<%--                    //--%>
-<%--                    //   await widgets.setAmount({--%>
-<%--                    //     currency: "KRW",--%>
-<%--                    //     value: 50000,--%>
-<%--                    //   });--%>
-<%--                    // });--%>
-
-<%--                    // ------ '결제하기' 버튼 누르면 결제창 띄우기 --------%>
-<%--                    button.addEventListener("click", async function () {--%>
-<%--                      await widgets.requestPayment({--%>
-<%--                        orderId: "g0OAizCZ9JZrqzQuAXqEX",--%>
-<%--                        orderName: "토스 티셔츠 외 2건",--%>
-<%--                        successUrl: "http://localhost:8085/payments/toss/success",--%>
-<%--                        failUrl: "http://localhost:8085/payments/toss/fail",--%>
-<%--                        customerEmail: "customer123@gmail.com",--%>
-<%--                        customerName: "김토스",--%>
-<%--                        customerMobilePhone: "01012341234",--%>
-<%--                      });--%>
-<%--                    });--%>
-<%--                  }--%>
-<%--                </script>--%>
-
+                </form>
                 </div>
 
               </div>

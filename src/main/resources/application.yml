@@ -10,7 +10,7 @@ spring:
   datasource:
     driver-class-name: oracle.jdbc.OracleDriver
     url: jdbc:oracle:thin:@localhost:1521/XE
-    username: kt
+    username: kcc
     password: 1234
   cache:
     jcache:
@@ -22,6 +22,6 @@ mybatis:
 payment:
   toss:
     test_client_api_key : test_ck_Z61JOxRQVEzBdO1dYJ9DrW0X9bAq
-    test_secret_api_key : test_sk_QbgMGZzorzymxPP0v0pvVl5E1em4
+    test_secret_api_key : test_gsk_docs_OaPz8L5KdmQXkzRz3y47BMw6
     success_url : "http://localhost:8085/payments/toss/success"
     fail_url : "http://localhost:8085/payments/toss/fail"

@@ -1,5 +1,7 @@
 package com.kcc.rich.dto;
 
+import java.sql.Timestamp;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -8,9 +10,11 @@ import lombok.ToString;
 @Setter
 @ToString
 public class TossPayDTO {
-    private Integer amount;
-    private String orderId;
-    private String orderName;
-    private String successUrl;
-    private String failUrl;
+    private Long member_id;
+    private Long restaurant_id;
+    private String name;
+    private String phone;
+    private Integer reservation_per;
+    private Integer reservation_price;
+    private String reservation_date;
 }
