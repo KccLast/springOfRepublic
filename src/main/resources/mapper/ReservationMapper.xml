@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kcc.rich.mapper.ReservationMapper">
+
+<!--  예약 취소 안 된 애들-->
+    <select id="getReservationsByMemberId" resultType="com.kcc.rich.dto.ReservationDTO">
+        SELECT *
+        FROM reservations r, restaurants rst
+        WHERE NOT EXISTS (
+            SELECT 1
+            FROM cancel c
+            WHERE c.reservation_id = r.reservation_id
+        )
+          and member_id = #{member_ID}
+          and r.restaurant_id = rst.restaurant_id
+
+    </select>
+
+<!--    예약 취소 목록 찾기-->
+    <select id="getCancelByMemberId" resultType="com.kcc.rich.dto.ReservationDTO">
+        SELECT *
+        FROM reservations r, restaurants res
+        WHERE r.restaurant_id = res.restaurant_id
+          AND
+            EXISTS (
+                SELECT 1
+                FROM cancel c
+                WHERE c.reservation_id = r.reservation_id
+            )
+          AND member_id = #{member_Id}
+    </select>
+
+<!--    예약 조회-->
+    <select id="getReservationById" resultType="com.kcc.rich.dto.ReservationDTO">
+        SELECT * FROM RESERVATIONS WHERE reservation_id = #{reservationId}
+    </select>
+
+<!--    방문완료-->
+    <select id = "getCompletedReservationsByMemberId" resultType = "com.kcc.rich.dto.ReservationDTO">
+        SELECT *
+        FROM RESERVATIONS res,RESTAURANTS r
+        WHERE RESERVATION_REG_DATE <![CDATA[<]]> SYSDATE
+        AND RESERVATION_STATUS = 2
+        AND member_id = #{memberid}
+        AND res.restaurant_id = r.restaurant_id
+    </select>
+
+<!-- 방문완료한 것들 리뷰 목록에 추가 -->
+    <insert id = "submitInsertReview" parameterType="com.kcc.rich.dto.ReservationDTO">
+        INSERT INTO values(review_score,review_content)
+        VALUES(#{review_score}, #{review_content})
+    </insert>
+
+
+<!--    예약 취소-->
+    <delete id="deleteReservation">
+        DELETE FROM RESERVATIONS WHERE reservation_id = #{reservationId}
+    </delete>
+
+<!--    예약 취소목록에 추가-->
+    <insert id="insertCancel" parameterType="com.kcc.rich.dto.ReservationDTO">
+            INSERT INTO cancel VALUES(#{reservation_Id},sysdate,#{reservation_price})
+    </insert>
+</mapper>
