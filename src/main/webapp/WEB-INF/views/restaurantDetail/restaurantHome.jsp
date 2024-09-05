@@ -41,7 +41,6 @@
     ></script>
     <script type="text/javascript">
       var restaurant_id = ${restaurantHomeResponse.restaurant_id};
-      console.log(restaurant_id+'ssss');
     </script>
 
     <script src="/resources/js/restaurant/restaurantHome.js"></script>

@@ -9,7 +9,7 @@
     <link
       rel="stylesheet"
       href="/resources/css/restaurant/restaurantDetail.css"
-    />
+    /><script src="/resources/js/restaurant/restaurantNav.js"></script>
   </head>
   <body>
     <!-- nav bar, 뒤로가기 버튼, 공유하기 버튼 -->
@@ -17,9 +17,9 @@
       <i class="bi bi-chevron-left col-1 text-start"></i>
       <li class="nav-item mx-5 col-2">
         <a
-          class="nav-link active"
+          class="nav-link"
           id="nav-home-tab"
-          aria-current="page"
+<%--          aria-current="page"--%>
           href="http://localhost:8085/restaurant/home"
           >홈</a
         >

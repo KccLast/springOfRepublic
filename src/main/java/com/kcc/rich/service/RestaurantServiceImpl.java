@@ -46,7 +46,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 
 	@Override
 	public RestaurantHomeResponse getRestaurantHome(Long restaurant_id) {
-		return restaurantsMapper.selectRestaurant(restaurant_id);
+		RestaurantHomeResponse restaurantHomeResponse = restaurantsMapper.selectRestaurant(restaurant_id);
+		restaurantHomeResponse.setReview_avg(Math.round(restaurantHomeResponse.getReview_avg() * 10) / 10.0);
+		return restaurantHomeResponse;
 	}
 
 	@Override
@@ -85,6 +87,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
 		// review 리스트
 		restaurantReviewResponse.setReview_list(restaurantsMapper.selectRestaurantReview(restaurant_id));
+		restaurantReviewResponse.setRestaurant_id(restaurant_id);
 
 		return restaurantReviewResponse;
 	}
@@ -94,8 +97,6 @@ public class RestaurantServiceImpl implements RestaurantService {
 		return restaurantsMapper.selectRestaurantInfo(restaurant_id);
 	}
 
-//	@Override
-//	public void getResInfo(Long)
 }
 
 
