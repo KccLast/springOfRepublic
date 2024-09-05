@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,12 +17,19 @@
         <h2>회원가입</h2>
         <div class="join-container">
             <div class="profile-container">
-                <img class="profile-image" src="/resources/img/members/profile.png" alt="프로필">
-                <img class="camera-icon" src="/resources/img/members/camera.png" alt="카메라">
+                <label for="profile-image-input">
+                    <!-- 프로필 이미지 처리 -->
+                    <img id="profile-image" class="profile-image"
+                         src="/resources/img/members/profile.png" alt="프로필"> <!-- 기본 이미지 -->
+                    <img class="camera-icon" src="/resources/img/members/camera.png" alt="카메라">
+                </label>
             </div>
 
             <!-- 회원가입 폼 -->
-            <form:form id="join-form" modelAttribute="memberDto" action="/members/join" method="post">
+            <form:form id="join-form" modelAttribute="memberDto" action="/members/join" method="post"
+                       enctype="multipart/form-data">
+                <input type="file" id="profile-image-input" name="member_img" style="display: none;"
+                       onchange="profile_img(event)">
                 <!-- 이메일 입력 필드 -->
                 <div class="email-container">
                     <form:input type="email" id="username" class="form-control" path="username"

@@ -20,4 +20,5 @@ public class MemberVO {
     private String member_img;
     private Timestamp member_create;
     private Timestamp member_update;
+    private String member_explain;
 }

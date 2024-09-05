@@ -3,6 +3,7 @@ package com.kcc.rich.domain.member;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data
 public class MemberDto {
@@ -29,4 +30,9 @@ public class MemberDto {
     @NotBlank(message = "전화번호를 입력해주세요.")
     @Pattern(regexp = "^\\d{3}-\\d{4}-\\d{4}$", message = "전화번호는 000-0000-0000 형식이어야 합니다.")
     private String member_phone;
+
+    private String member_explain;
+
+    private MultipartFile member_img;
+    private String full_path;
 }

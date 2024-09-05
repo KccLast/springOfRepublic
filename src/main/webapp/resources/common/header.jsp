@@ -1,8 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--<%@ taglib prefix="c" uri="jakarta.tags.core" %>--%>
-<%--<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>--%>
+<%--<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>--%>
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta charset="UTF-8">
@@ -29,7 +27,8 @@
             </div>
             <div class="row ms-auto col-auto pt-3 pb-3 pe-5">
                 <h5 class="ps-3 pe-3 col-auto fw-bold">My Page</h5>
-<%--                &lt;%&ndash; 로그인 상태	&ndash;%&gt;--%>
+                <%-- 로그인 상태	--%>
+
 <%--                <sec:authorize access="isAuthenticated()">--%>
 <%--                    <h5 class="ps-3 pe-3 col-auto fw-bold">--%>
 <%--                        <a href="/logout">Logout</a>--%>

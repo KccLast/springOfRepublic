@@ -20,15 +20,13 @@
             <form class="login-form" action="/login" method="post">
                 <input type="text" id="username" name="username" placeholder="이메일을 입력하세요">
                 <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요">
-                <input type="submit" id="btn-login"  value="이메일로 로그인">
+                <input type="submit" id="btn-login" onclick="login_check();" value="이메일로 로그인">
             </form>
-            <button class="btn-join">회원가입</button>
-
-            <p><a href="/members/find-pwd">비밀번호를 잊으셨나요?</a></p>
+            <button class="btn-join"><a class="a-join" href="/members/join">회원가입</a></button>
         </div>
     </div>
 </div>
 
-<%--<script src="/resources/js/members/login.js"></script>--%>
+<script src="/resources/js/members/login.js"></script>
 </body>
 </html>

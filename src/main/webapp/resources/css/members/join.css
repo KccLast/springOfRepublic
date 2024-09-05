@@ -83,6 +83,10 @@ input[type="buton"] {
   color: white;
 }
 
+.submit-container {
+  width: 100%;
+}
+
 .email-container, .password-container, .password-confirm-container,
 .name-container, .nickname-container, .address-container, .phone-container{
   position: relative;

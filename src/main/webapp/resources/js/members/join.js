@@ -103,3 +103,28 @@ function duplicate_check() {
     });
 
 }
+
+// 프로필 이미지 업로드 - 사용자가 파일을 선택할 때 이벤트 발생
+// function profile_img(event) {
+//     const file = event.target.files[0];
+//     if (file) {
+//         const reader = new FileReader();
+//         reader.onload = function(e) {
+//             $('#profile-image').attr('src', e.target.result); // jQuery로 이미지 src 설정
+//             $('#member_img').val(e.target.result.split(',')[1]); // jQuery로 input value 설정
+//         };
+//         reader.readAsDataURL(file);
+//     }
+// }
+
+function profile_img(event) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+        // jQuery를 사용하여 프로필 이미지 미리보기 업데이트
+        $('#profile-image').attr('src', e.target.result); // 선택된 이미지로 미리보기 업데이트
+    };
+    // 선택한 파일을 읽음
+    reader.readAsDataURL(event.target.files[0]);
+}
+
+

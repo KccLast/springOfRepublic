@@ -58,7 +58,12 @@ input[type="submit"] {
     width: 40%;
 }
 
-.login-content a {
+.a-join {
+    color: white;
+    text-decoration-line: none;
+}
+
+.forget-pwd {
     text-decoration-line: none;
     color: #ff9100;
 }

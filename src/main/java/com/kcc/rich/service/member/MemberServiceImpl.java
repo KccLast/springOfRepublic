@@ -16,14 +16,10 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public boolean login(String username, String password) throws Exception {
+    public MemberVO login(String username, String password) {
         MemberVO member = mapper.loginMember(username, password);
-        System.out.println(member);
-        if(member == null) {
-            throw new Exception("존재하지 않는 이메일입니다.");
-        }
 
-        return true;
+        return member;
     }
 
     @Override
@@ -42,5 +38,22 @@ public class MemberServiceImpl implements MemberService {
         MemberVO member = mapper.findByEmail(username);
         System.out.println(member);
         return member;
+    }
+
+    @Override
+    public int countReservation(String username) {
+        int countReservation = mapper.countReservation(username);
+        System.out.println("serviceImpl: " + countReservation);
+        return countReservation;
+    }
+
+    @Override
+    public int countReview(String username) {
+        return mapper.countReview(username);
+    }
+
+    @Override
+    public void updateInfo(MemberVO member) {
+        mapper.updateInfo(member);
     }
 }
