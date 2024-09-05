@@ -1,4 +1,10 @@
 $(function (){
+
+  let date;
+  let month;
+  let day;
+  let year;
+  let yearMonthDay;
   // Initialize datepicker
   $(".j-datePicker").datepicker({
     dateFormat: 'yy-mm-dd',
@@ -20,8 +26,8 @@ $(function (){
     onSelect: function(dateText, inst) {
       // 날짜를 선택했을 때 처리할 작업을 여기에 작성
       console.log("선택된 날짜: " + dateText);
-
-      // 예시로 선택한 날짜를 alert로 출력
+      date = $(this).datepicker('getDate');
+      yearMonthDay = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
       alert("선택된 날짜: " + dateText);
 
       // 선택된 날짜의 시간 리스트 출력
@@ -96,3 +102,22 @@ $(document).ready(function() {
     });
   });
 });
+
+$(".j-date-circle-box").on('click','.j-time',function (){
+  console.log('hi');
+  // 다른 아이템에서 focus 클래스 제거
+  $('.j-time').removeClass('j-time-click');
+  // 클릭한 아이템에 focus 클래스 추가
+  $(this).addClass('j-time-click');
+});
+
+$('.modal-footer').on('click',function (){
+  let text = $('.j-time-click > span').text();
+  yearMonthDay
+
+  if(text !== '' && text !== null && yearMonthDay !== '' &&yearMonthDay !==null){
+    console.log(yearMonthDay);
+    console.log(text);
+  }
+
+})

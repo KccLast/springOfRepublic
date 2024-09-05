@@ -41,12 +41,85 @@
     ></script>
     <script type="text/javascript">
       var restaurant_id = ${restaurantHomeResponse.restaurant_id};
+
+    $(function () {
+
+      $('#payment-button').on('click', function () {
+        // 예약 정보 수집
+
+        console.log("hi");
+        // 현재 시간으로 고유 주문 ID 설정 (변경 필요)
+        const timestamp = new Date().getTime();
+        document.querySelector('input[name="orderId"]').value = 'ORDER_ID_' + timestamp;
+
+        // 폼 제출
+        document.getElementById('hiddenForm').submit();
+//         const reservationInfo = {
+//           restaurantId: restaurant_id,
+//           name: $('#inputName').val(),
+//           phone: $('#inputPhone').val(),
+//           person: $('#inputPerson').val(),
+//           deposit: $('#inputDeposit').val(),
+//           // date: $('.j-datePicker').datepicker('getDate'), // 선택된 예약 일자
+//         };
+//
+//         // 결제 요청을 위한 데이터를 설정합니다.
+//         // const paymentData = {
+//         //   amount: reservationInfo.person * reservationInfo.deposit, // 예약 인원 * 1인당 예약금
+//         //   orderId: 'ORDER_ID_' + new Date().getTime(), // 고유 주문 ID 생성
+//         //   orderName: '식당 예약 - ' + reservationInfo.name, // 주문명
+//         //   successUrl: 'http://localhost:8085/payments/toss/success', // 결제 성공 시 리다이렉트 URL
+//         //   failUrl: 'http://localhost:8085/payments/toss/fail', // 결제 실패 시 리다이렉트 URL
+//         // };
+// // paymentData 객체 정의
+//         const paymentData = {
+//           amount: reservationInfo.person * reservationInfo.deposit, // 예약 인원 * 1인당 예약금
+//           orderId: 'ORDER_ID_' + new Date().getTime(), // 고유 주문 ID 생성
+//           orderName: '식당 예약 - ' + reservationInfo.name, // 주문명
+//           successUrl: 'http://localhost:8085/payments/toss/success', // 결제 성공 시 리다이렉트 URL
+//           failUrl: 'http://localhost:8085/payments/toss/fail', // 결제 실패 시 리다이렉트 URL
+//         };
+//
+// // 폼을 동적으로 생성하고 제출하는 함수
+//           // 새 폼 요소를 생성
+//           const form = document.createElement('form');
+//           form.method = 'POST';
+//           form.action = '/payment'; // 요청을 보낼 URL
+//
+//           // paymentData의 각 속성에 대해 숨겨진 입력 필드를 생성
+//           for (const key in paymentData) {
+//             if (paymentData.hasOwnProperty(key)) {
+//               const input = document.createElement('input');
+//               input.type = 'hidden'; // 숨겨진 필드
+//               input.name = key; // 필드 이름
+//               input.value = paymentData[key]; // 필드 값
+//               form.appendChild(input); // 폼에 추가
+//             }
+//           }
+//
+//           form.submit();
+
+      });
+    });
+
+
+
+
     </script>
 
     <script src="/resources/js/restaurant/restaurantHome.js"></script>
 
   </head>
   <body>
+
+  <form id="hiddenForm" action="/payment" method="POST" style="display: none;">
+    <input type="hidden" name="amount" value="15000"> <!-- 예: 3명 * 5000원 -->
+    <input type="hidden" name="orderId" value="ORDER_ID_{{timestamp}}"> <!-- 예: 고유 주문 ID -->
+    <input type="hidden" name="orderName" value="식당 예약 - ABC Restaurant"> <!-- 예: 주문명 -->
+    <input type="hidden" name="successUrl" value="http://localhost:8085/payments/toss/success"> <!-- 결제 성공 URL -->
+    <input type="hidden" name="failUrl" value="http://localhost:8085/payments/toss/fail"> <!-- 결제 실패 URL -->
+  </form>
+
     <%@ include file="/resources/common/header.jsp" %>
     <!-- class c-flex-center 추가 8.30 3:01-->
     <div id="c-container" class="c-flex-col">

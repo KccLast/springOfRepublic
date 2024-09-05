@@ -57,3 +57,7 @@
 .bi-geo-alt, .bi-coin, .bi-clock{
     font-size: 25px;
 }
+
+.j-time-click{
+    background-color: #ff9100;
+}
