@@ -41,6 +41,7 @@
     ></script>
     <script type="text/javascript">
       var restaurant_id = ${restaurantHomeResponse.restaurant_id};
+      console.log('Restaurant ID: ' + restaurant_id);
     </script>
 
     <script src="/resources/js/restaurant/restaurantHome.js"></script>

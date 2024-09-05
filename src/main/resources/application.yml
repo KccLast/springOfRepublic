@@ -20,6 +20,9 @@
 server:
   port: 8085
 spring:
+  cache:
+    jcache:
+      config: classpath:ehcache.xml
   application:
     name: rich
   mvc:
