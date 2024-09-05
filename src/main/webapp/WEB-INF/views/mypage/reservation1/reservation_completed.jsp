@@ -7,8 +7,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>예약 페이지</title>
+
     <link rel="stylesheet" href="/resources/reservation/reservation_completed.css">
     <link rel="stylesheet" href="/resources/css/header.css">
+    <style>
+        .j-reservation-id{
+            display: none;
+        }
+    </style>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // 모든 tab-button에서 active 클래스 제거
@@ -34,9 +40,9 @@
 
             <nav>
                 <ul>
-                    <li><a href="/reservation/list/${member_id}" class="btn-reservation">예약</a></li>
-                    <li><a href="/reservation/completed/${member_id}" class="btn-complete">방문 완료</a></li>
-                    <li><a href="/reservation/cancel/${member_id}"  class="btn-cancel">예약 취소</a></li>
+                    <li><a href="/reservation/list" class="btn-reservation">예약</a></li>
+                    <li><a href="/reservation/completed" class="btn-complete">방문 완료</a></li>
+                    <li><a href="/reservation/cancel"  class="btn-cancel">예약 취소</a></li>
                 </ul>
             </nav>
         </div>
@@ -50,7 +56,7 @@
                     </div>
                     <div class="d-res-content-ch-box">
                         <div class ="d-res-img-box">
-                            <img src="/resources/image/${reservation.restaurant_img}" alt="Insert Image"/>
+                            <img src="/images/${reservation.restaurant_img}" alt="Insert Image"/>
                         </div>
                         <div class="d-res-name-box">
                             <div class="d-r-name">
@@ -84,7 +90,7 @@
         <div class="j-modal" style="display:none;">
             <form action="/review/insert" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="reservation_id" class="j-reservation_id" />
-                <input type="hidden" name="member_id" class="j-member-id" value="101">
+<%--                <input type="hidden" name="member_id" class="j-member-id" value="101">--%>
             <div class="j-modal_body">
                 <!-- 닫기 버튼 추가 -->
                 <div class="close-button" id="closeModal">x</div>

@@ -138,7 +138,7 @@ public class MemberController {
         }else{
             fileName = img;
         }
-        System.out.println(img);
+        System.out.println(fileName);
 
         model.addAttribute("fileName", fileName);
 

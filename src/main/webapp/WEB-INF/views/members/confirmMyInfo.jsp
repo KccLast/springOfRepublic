@@ -4,6 +4,9 @@
 <!doctype html>
 <html lang="">
 <head>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+            crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -12,6 +15,7 @@
     <link rel="stylesheet" href="/resources/css/header.css">
     <link rel="stylesheet" href="/resources/css/members/confirmMyInfo.css">
     <script>
+
         document.addEventListener('DOMContentLoaded', function() {
             // 모든 tab-button에서 active 클래스 제거
             var buttons = document.querySelectorAll('.tab-button');
@@ -38,7 +42,7 @@
 <%--                <img class="profile-image" src="/images/${fileName}" />--%>
                 <c:choose>
                     <c:when test="${loginMember.member_img.startsWith('/resources/img')}">
-                        <img class="profile-image" src="${filename}" alt="프로필">
+                        <img class="profile-image" src="/images/${fileName}" alt="프로필">
                     </c:when>
                     <c:otherwise>
                         <img class="profile-image" src="/images/${fileName}" />

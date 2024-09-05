@@ -46,6 +46,7 @@
         <insert id="insertReview" parameterType="com.kcc.rich.dto.ReviewInsertDTO">
             INSERT INTO REVIEWS values(
             #{reservation_id},
+            #{member_id},
             sysdate,
             #{review_score},
             sysdate,

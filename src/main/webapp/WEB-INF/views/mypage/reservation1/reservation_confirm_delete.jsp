@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/resources/css/header.css">
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('${fileName}');
             // 모든 tab-button에서 active 클래스 제거
             var buttons = document.querySelectorAll('.tab-button');
             buttons.forEach(function(button) {
@@ -34,9 +35,9 @@
 
             <nav>
                 <ul>
-                    <li><a href="/reservation/list/${member_id}" class="btn-reservation">예약</a></li>
-                    <li><a href="/reservation/completed/${member_id}" class="btn-complete">방문 완료</a></li>
-                    <li><a href="/reservation/cancel/${member_id}"  class="btn-cancel">예약 취소</a></li>
+                    <li><a href="/reservation/list" class="btn-reservation">예약</a></li>
+                    <li><a href="/reservation/completed" class="btn-complete">방문 완료</a></li>
+                    <li><a href="/reservation/cancel"  class="btn-cancel">예약 취소</a></li>
                 </ul>
             </nav>
         </div>
@@ -48,7 +49,7 @@
 
                 <div class="d-res-content-ch-box">
                         <div class="d-res-img-box">
-                            <img src="/resources/image/${reservation.restaurant_img}" alt="Insert Image"/>
+                            <img src="/images/${reservation.restaurant_img}" alt="Insert Image"/>
                         </div>
                         <div class="d-res-name-box">
                             <div class="d-r-name">${reservation.restaurant_name}</div>

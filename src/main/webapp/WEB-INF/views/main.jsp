@@ -138,7 +138,14 @@
                         </div>
                     </div>
                     <div class="j-card-img j-flex-row-center">
-                        <img src="/resources/img/main/image85.png">
+                        <c:choose>
+                            <c:when test="${not empty res.restaurant_img}">
+                                <img src="/images/${res.restaurant_img}">
+                            </c:when>
+                            <c:otherwise>
+                                <img src="/resources/img/bibibi.png"> <!-- 기본 이미지 경로 -->
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                     <div class="j-card-footer">
                         <span class="j-card-footer-res-type">${res.restaurant_type}</span>

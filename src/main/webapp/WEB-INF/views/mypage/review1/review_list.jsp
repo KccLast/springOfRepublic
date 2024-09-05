@@ -44,7 +44,7 @@
                         <input type="hidden" value="${review.reservation_id}">
                          <%--이미지파일첨부--%>
                         <div class="d-res-img-box">
-                            <img id="${review.reservation_id}" src="/resources/image/${review.restaurant_img}" alt="Insert Image"/>
+                            <img id="${review.reservation_id}" src="/images/${review.restaurant_img}" alt="Insert Image"/>
                         </div>
 
                         <div class="d-res-name-box">

@@ -24,7 +24,7 @@
         </listeners>
 
         <resources><!-- resources는 캐시 데이터의 저장 공간과 용량을 지정한다. 만약 힙 메모리만 사용한다면 <heap> 요소만으로 대체할 수 있다.  -->
-            <heap unit="entries">2</heap><!-- heap은 JVM 힙 메모리에 캐시를 저장하도록 세팅하는 요소이다. -->
+            <heap unit="entries">100</heap><!-- heap은 JVM 힙 메모리에 캐시를 저장하도록 세팅하는 요소이다. -->
             <!-- entries는 항목이다. 2로 설정했으면 총 2개의 항목을 힙에 저장할 수 있다는 뜻. 만약 entries 수를 넘어가면 가장 예전에 저장했던 캐시부터 1개씩 삭제하면서 새로운 캐시를 저장한다. -->
             <offheap unit="MB">10</offheap><!-- offheap은 JVM 힙 메모리 외부의 메모리에 캐시를 저장하도록 세팅하는 요소이다. -->
         </resources>
@@ -54,5 +54,16 @@
         </resources>
     </cache>
 
+
+    <cache alias="resCache">
+        <key-type>java.lang.Integer</key-type>
+        <value-type>java.util.List</value-type>
+        <expiry>
+            <ttl unit="seconds">30</ttl> <!-- 캐시 만료 시간을 10분으로 설정 -->
+        </expiry>
+        <resources>
+            <heap unit="entries">100</heap> <!-- 100개의 항목을 힙 메모리에 저장 -->
+        </resources>
+    </cache>
 
 </config>

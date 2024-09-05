@@ -5,6 +5,9 @@
 <!doctype html>
 <html lang="">
 <head>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+            crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -31,7 +34,7 @@
 <%--                    <img id="profile-image" class="profile-image" src="/images/${fileName}" alt="프로필">--%>
                     <c:choose>
                         <c:when test="${loginMember.member_img.startsWith('/resources/img')}">
-                            <img id="profile-image" class="profile-image" src="${filename}" alt="프로필">
+                            <img id="profile-image" class="profile-image" src="${fileName}" alt="프로필">
                         </c:when>
                         <c:otherwise>
                             <img id="profile-image"  class="profile-image" src="/images/${fileName}" />

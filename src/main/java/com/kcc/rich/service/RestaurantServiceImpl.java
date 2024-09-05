@@ -5,6 +5,8 @@ import com.kcc.rich.util.Criteria;
 import com.kcc.rich.util.won.RestaurantJsonDTO;
 import com.kcc.rich.util.won.RestaurantRankDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +27,11 @@ public class RestaurantServiceImpl implements RestaurantService {
 	private final RestaurantsMapper restaurantsMapper;
 
 	@Override
+	@Cacheable(
+			value = "totalStatistics",
+			key = "#criteria.page",
+			condition = "#criteria.page >= 1 and #criteria.page <= 5"
+	)
 	public List<RestaurantRankDTO> getRestaurantList(Criteria criteria) {
 		return restaurantsMapper.selectRestaurantsWithPage(criteria);
 	}
